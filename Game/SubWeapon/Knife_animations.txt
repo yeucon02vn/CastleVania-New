@@ -1,0 +1,1 @@
+weapon_knife_ani	weapon_knife	100

@@ -1,0 +1,2 @@
+effect_fire_ani	effect_3		200	effect_2		200	effect_1		200
+effect_star_ani	effect_star		100
