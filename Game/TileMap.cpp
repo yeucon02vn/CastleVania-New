@@ -1,10 +1,13 @@
 ﻿#include "TileMap.h"
 
-TileMap::TileMap(int state, int frameHeight,int frameWidth)
+TileMap::TileMap(int state, int mapWidth, int mapHeight, int frameHeight, int frameWidth)
 {
 	FrameHeight = frameHeight;
 	FrameWidth = frameWidth;
+	ScreenRow = (MAP_HEIGHT_LV1 / FrameHeight);
+	ColumnMatrix = mapWidth / FrameWidth;
 	LoadMap(state);
+
 }
 
 TileMap::~TileMap()
@@ -19,8 +22,8 @@ void TileMap::ReadMap(LPCWSTR filename, int State)
 
 	switch (State)
 	{
-	case 1: ColumnMatrix = 48;	fit = 130; break;
-	case 2: ColumnMatrix = 176; fit = 106;  break;
+	case 1: fit = 130; break;
+	case 2: fit = 106;  break;
 	default:; break;
 	}
 
@@ -53,8 +56,7 @@ void TileMap::LoadMap(int state)
 		animation = new Animation(0);
 		for (int i = 0; i < 49; i++)
 			animation->Add("TileMap1_" + to_string(i));
-
-		ScreenRow = (MAP_HEIGHT_LV1 / FrameHeight);
+	
 		break;
 	}
 	case STAGE2:
@@ -69,8 +71,6 @@ void TileMap::LoadMap(int state)
 		animation = new Animation(0);
 		for (int i = 0; i < 103; i++)
 			animation->Add("TileMap2_" + to_string(i));
-
-		//ScreenRow = (MAP_HEIGHT_LV1 / FrameHeight);
 		break;
 	}
 

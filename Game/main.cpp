@@ -98,14 +98,7 @@ void LoadSprites(int id, LPCWSTR tex, LPCWSTR sprite_data, LPCWSTR animation_dat
 void LoadResources()
 {
 	textures->Add(ID_TEX_BBOX, L"Textures\\BBox.png", D3DCOLOR_XRGB(255, 0, 255));
-
-	LoadSprites(ID_TEX_GROUND, L"StaticObject\\Ground.png", L"StaticObject\\Ground_sprites.txt", L"StaticObject\\Ground_animations.txt");
-	LoadSprites(ID_TEX_CANDLE, L"StaticObject\\Candle.png", L"StaticObject\\Candle_sprites.txt", L"StaticObject\\Candle_animations.txt");
-	LoadSprites(ID_TEX_WHIP, L"Whip\\Whip.png", L"Whip\\Whip_sprites.txt", L"Whip\\Whip_animations.txt");
-	LoadSprites(ID_TEX_SIMON, L"Simon\\Simon.png", L"Simon\\Simon_sprites.txt", L"Simon\\Simon_animations.txt");
-	LoadSprites(ID_TEX_ITEMS, L"Items\\Items.png", L"Items\\Items_sprites.txt", L"Items\\Items_animations.txt");
-	LoadSprites(ID_TEX_EFFECT, L"Effect\\Effect.png", L"Effect\\Effect_sprites.txt", L"Effect\\Effect_animations.txt");
-	LoadSprites(ID_TEX_KNIFE, L"SubWeapon\\Knife.png", L"SubWeapon\\Knife_sprites.txt", L"SubWeapon\\Knife_animations.txt");
+	LoadSprites(ID_TEX, L"Textures\\Castlevania.png", L"Textures\\Castlevania_sprites.txt", L"Textures\\Castlevania_animations.txt");
 }
 
 

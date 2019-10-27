@@ -1,4 +1,0 @@
-effect_1		0	0	42	44
-effect_2		42	0	84	44
-effect_3		84	0	126	44
-effect_star		126	0	168	44

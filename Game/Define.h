@@ -24,14 +24,8 @@
 #define	ID_TEX_LEVEL_ONE		1
 #define	ID_TEX_LEVEL_TWO		2
 
-#define ID_TEX_SIMON 101
-#define ID_TEX_WHIP 201
-#define ID_TEX_EFFECT 301
-#define ID_TEX_CANDLE 401
-#define ID_TEX_GROUND 501
+#define ID_TEX 101
 
-#define ID_TEX_ITEMS 601
-#define ID_TEX_KNIFE 701
 
 
 
@@ -140,3 +134,5 @@
 
 #define MAP_WIDTH_LV1	(int)1536
 #define MAP_HEIGHT_LV1	(int)384
+#define MAP_WIDTH_LV2	(int)5632
+#define MAP_HEIGHT_LV2	(int)774

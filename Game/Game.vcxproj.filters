@@ -34,6 +34,15 @@
     <Filter Include="Effect">
       <UniqueIdentifier>{b806c285-4790-4a1e-8095-181e9fbc6443}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Library">
+      <UniqueIdentifier>{8babb7b7-8187-4ac2-b7ab-c1a7a175dfb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Lib">
+      <UniqueIdentifier>{33737e71-7618-42b7-b7bc-0d4199b8c5b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Inc">
+      <UniqueIdentifier>{00d03dd0-2994-4d84-b026-cc8a934e6bec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animations.cpp">
@@ -158,5 +167,333 @@
     <ClInclude Include="SubWeapon.h">
       <Filter>Simon</Filter>
     </ClInclude>
+    <ClInclude Include="Library\Inc\audiodefs.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\comdecl.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\D2D1.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\D2D1Helper.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\D2DBaseTypes.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\D2Derr.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\D3D10.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\D3D10effect.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\d3d10misc.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\d3d10sdklayers.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\D3D10shader.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\D3D10_1.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\D3D10_1shader.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\D3D11.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\D3D11SDKLayers.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\D3D11Shader.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\d3d9.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\d3d9caps.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\d3d9types.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\D3Dcommon.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\D3Dcompiler.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\D3DCSX.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\D3DX10.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\d3dx10async.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\D3DX10core.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\D3DX10math.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\D3DX10mesh.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\D3DX10tex.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\D3DX11.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\D3DX11async.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\D3DX11core.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\D3DX11tex.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\d3dx9.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\d3dx9anim.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\d3dx9core.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\d3dx9effect.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\d3dx9math.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\d3dx9mesh.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\d3dx9shader.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\d3dx9shape.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\d3dx9tex.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\d3dx9xof.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\Dcommon.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\dinput.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\dinputd.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\dsconf.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\dsetup.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\dsound.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\DWrite.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\dxdiag.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\DxErr.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\dxfile.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\DXGI.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\DXGIFormat.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\DXGIType.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\dxsdkver.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\gameux.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\PIXPlugin.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\rmxfguid.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\rmxftmpl.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\rpcsal.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\X3DAudio.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\xact3.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\xact3d3.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\xact3wb.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\XAPO.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\XAPOBase.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\XAPOFX.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\XAudio2.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\XAudio2fx.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\XDSP.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\XInput.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\xma2defs.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Inc\xnamath.h">
+      <Filter>Library\Inc</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Library\Lib\d2d1.lib">
+      <Filter>Library\Lib</Filter>
+    </Library>
+    <Library Include="Library\Lib\d3d9.lib">
+      <Filter>Library\Lib</Filter>
+    </Library>
+    <Library Include="Library\Lib\d3d10.lib">
+      <Filter>Library\Lib</Filter>
+    </Library>
+    <Library Include="Library\Lib\d3d10_1.lib">
+      <Filter>Library\Lib</Filter>
+    </Library>
+    <Library Include="Library\Lib\d3d11.lib">
+      <Filter>Library\Lib</Filter>
+    </Library>
+    <Library Include="Library\Lib\d3dcompiler.lib">
+      <Filter>Library\Lib</Filter>
+    </Library>
+    <Library Include="Library\Lib\D3DCSX.lib">
+      <Filter>Library\Lib</Filter>
+    </Library>
+    <Library Include="Library\Lib\D3DCSXd.lib">
+      <Filter>Library\Lib</Filter>
+    </Library>
+    <Library Include="Library\Lib\d3dx9.lib">
+      <Filter>Library\Lib</Filter>
+    </Library>
+    <Library Include="Library\Lib\d3dx9d.lib">
+      <Filter>Library\Lib</Filter>
+    </Library>
+    <Library Include="Library\Lib\d3dx10.lib">
+      <Filter>Library\Lib</Filter>
+    </Library>
+    <Library Include="Library\Lib\d3dx10d.lib">
+      <Filter>Library\Lib</Filter>
+    </Library>
+    <Library Include="Library\Lib\d3dx11.lib">
+      <Filter>Library\Lib</Filter>
+    </Library>
+    <Library Include="Library\Lib\d3dx11d.lib">
+      <Filter>Library\Lib</Filter>
+    </Library>
+    <Library Include="Library\Lib\d3dxof.lib">
+      <Filter>Library\Lib</Filter>
+    </Library>
+    <Library Include="Library\Lib\dinput8.lib">
+      <Filter>Library\Lib</Filter>
+    </Library>
+    <Library Include="Library\Lib\dsetup.lib">
+      <Filter>Library\Lib</Filter>
+    </Library>
+    <Library Include="Library\Lib\dsound.lib">
+      <Filter>Library\Lib</Filter>
+    </Library>
+    <Library Include="Library\Lib\dwrite.lib">
+      <Filter>Library\Lib</Filter>
+    </Library>
+    <Library Include="Library\Lib\DxErr.lib">
+      <Filter>Library\Lib</Filter>
+    </Library>
+    <Library Include="Library\Lib\dxguid.lib">
+      <Filter>Library\Lib</Filter>
+    </Library>
+    <Library Include="Library\Lib\dxgi.lib">
+      <Filter>Library\Lib</Filter>
+    </Library>
+    <Library Include="Library\Lib\X3DAudio.lib">
+      <Filter>Library\Lib</Filter>
+    </Library>
+    <Library Include="Library\Lib\xapobase.lib">
+      <Filter>Library\Lib</Filter>
+    </Library>
+    <Library Include="Library\Lib\xapobased.lib">
+      <Filter>Library\Lib</Filter>
+    </Library>
+    <Library Include="Library\Lib\XAPOFX.lib">
+      <Filter>Library\Lib</Filter>
+    </Library>
+    <Library Include="Library\Lib\XInput.lib">
+      <Filter>Library\Lib</Filter>
+    </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Library\Inc\D3DX10math.inl">
+      <Filter>Library\Inc</Filter>
+    </None>
+    <None Include="Library\Inc\d3dx9math.inl">
+      <Filter>Library\Inc</Filter>
+    </None>
+    <None Include="Library\Inc\D3DX_DXGIFormatConvert.inl">
+      <Filter>Library\Inc</Filter>
+    </None>
+    <None Include="Library\Inc\xnamathconvert.inl">
+      <Filter>Library\Inc</Filter>
+    </None>
+    <None Include="Library\Inc\xnamathmatrix.inl">
+      <Filter>Library\Inc</Filter>
+    </None>
+    <None Include="Library\Inc\xnamathmisc.inl">
+      <Filter>Library\Inc</Filter>
+    </None>
+    <None Include="Library\Inc\xnamathvector.inl">
+      <Filter>Library\Inc</Filter>
+    </None>
   </ItemGroup>
 </Project>

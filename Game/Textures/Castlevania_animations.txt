@@ -1,0 +1,38 @@
+item_small_heart_ani		item_small_heart	100
+item_big_heart_ani		item_big_heart	100
+item_whip_ani		item_whip		100
+item_knife_ani		item_knife		100
+normalwhip_ani	normalwhip_1	100	normalwhip_2	100	normalwhip_3	100
+shortchain_ani	shortchain_1	100	shortchain_2	100	shortchain_3	100
+longchain_ani	longchain_1	25	longchain_2	25	longchain_3	25	longchain_4	25	longchain_5	25	longchain_6	25	longchain_7	25	longchain_8	25	longchain_9	25	longchain_10	25	longchain_11	25	longchain_12	25
+simon_stand_idle_ani	simon_stand_idle	100
+simon_walk_ani	simon_walk_1	100	simon_walk_2	100	simon_walk_3	100	simon_walk_4	100
+simon_sit_ani	simon_sit	100
+simon_jump_ani	simon_jump	100
+simon_hitsit_ani	simon_hitsit_1	100	simon_hitsit_2	100	simon_hitsit_3	100
+simon_hitstand_ani	simon_hitstand_1	100	simon_hitstand_2	100	simon_hitstand_3	100
+simon_effect_ani	simon_effect_1	50	simon_effect_2	50	simon_effect_3	50
+simon_stairup_ani	simon_stairup_1	100	simon_stairup_2	100
+simon_stairdown_ani	simon_stairdown_1	100	simon_stairdown_2	100
+simon_hitstairup_ani	simon_hitstairup_1	100	simon_hitstairup_2	100	simon_hitstairup_3	100
+simon_hitstairdown_ani	simon_hitstairdown_1	100	simon_hitstairdown_2	100	simon_hitstairdown_3	100
+simon_deflect_ani	simon_stand	100	simon_deflect	400	simon_sit	100
+simon_dead_ani	simon_dead	100
+simon_back_ani	simon_back	100
+simon_stand_invisible_ani	simon_stand_invisible	100
+simon_walk_invisible_ani	simon_walk_invisible_1	100	simon_walk_invisible_2	100	simon_walk_invisible_3	100	simon_walk_invisible_4	100
+simon_sit_invisible_ani	simon_sit_invisible	100
+simon_jump_invisible_ani	simon_jump_invisible	100
+simon_hitsit_invisible_ani	simon_hitsit_invisible_1	100	simon_hitsit_invisible_2	100	simon_hitsit_invisible_3	100
+simon_hitstand_invisible_ani	simon_hitstand_invisible_1	100	simon_hitstand_invisible_2	100	simon_hitstand_invisible_3	100
+simon_stairup_invisible_ani	simon_stairup_invisible_1	100	simon_stairup_invisible_2	100
+simon_stairdown_invisible_ani	simon_stairdown_invisible_1	100	simon_stairdown_invisible_2	100
+simon_hitstairup_invisible_ani	simon_hitstairup_invisible_1	100	simon_hitstairup_invisible_2	100	simon_hitstairup_invisible_3	100
+simon_hitstairdown_invisible_ani	simon_hitstairdown_invisible_1	100	simon_hitstairdown_invisible_2	100	simon_hitstairdown_invisible_3	100
+ground1_ani	ground1	100
+ground2_ani	ground2	100
+bigcandle_ani	bigcandle_1	150	bigcandle_2	150
+smallcandle_ani	smallcandle_1	150	smallcandle_2	150
+effect_fire_ani	effect_3		200	effect_2		200	effect_1		200
+effect_star_ani	effect_star		100
+weapon_knife_ani	weapon_knife	100

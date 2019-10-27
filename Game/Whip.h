@@ -11,7 +11,7 @@ class Whip : public GameObject
 public:
 	Whip();
 
-	void Update();
+	virtual void Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects = NULL);
 	void Render();
 	void reset();
 	void SetWhipPosition(float x, float y, bool isSit);

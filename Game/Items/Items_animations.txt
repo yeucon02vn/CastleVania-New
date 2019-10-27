@@ -1,4 +1,0 @@
-item_small_heart_ani		item_small_heart	100
-item_big_heart_ani		item_big_heart	100
-item_whip_ani		item_whip		100
-item_knife_ani		item_knife		100

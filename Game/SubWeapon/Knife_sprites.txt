@@ -1,1 +1,0 @@
-weapon_knife	0	0	32	18

@@ -1,0 +1,22 @@
+﻿  Define.h
+  Stage1.cpp
+  c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\library\inc\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\define.h(6): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
+  c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\library\inc\dinput.h(42): note: see previous definition of 'DIRECTINPUT_VERSION'
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\stage1.cpp(40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\stage1.cpp(50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\stage1.cpp(72): warning C4018: '<': signed/unsigned mismatch
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\stage1.cpp(74): warning C4018: '<=': signed/unsigned mismatch
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\stage1.cpp(87): warning C4018: '<': signed/unsigned mismatch
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\stage1.cpp(97): warning C4018: '<': signed/unsigned mismatch
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\stage1.cpp(134): warning C4018: '<': signed/unsigned mismatch
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\stage1.cpp(139): warning C4018: '<': signed/unsigned mismatch
+  TileMap.cpp
+  c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\library\inc\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\define.h(6): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
+  c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\library\inc\dinput.h(42): note: see previous definition of 'DIRECTINPUT_VERSION'
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\tilemap.cpp(87): warning C4244: 'initializing': conversion from 'FLOAT' to 'int', possible loss of data
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\tilemap.cpp(88): warning C4244: 'initializing': conversion from 'FLOAT' to 'int', possible loss of data
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\tilemap.cpp(94): warning C4244: '=': conversion from 'FLOAT' to 'int', possible loss of data
+  Generating Code...
+  Game.vcxproj -> C:\Users\Administrator\Desktop\CastleVania\CastleVania\CastleVania-New\Debug\Game.exe
