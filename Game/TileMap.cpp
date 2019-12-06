@@ -1,13 +1,8 @@
 ﻿#include "TileMap.h"
 
-TileMap::TileMap(int state, int mapWidth, int mapHeight, int frameHeight, int frameWidth)
+TileMap::TileMap()
 {
-	FrameHeight = frameHeight;
-	FrameWidth = frameWidth;
-	ScreenRow = (MAP_HEIGHT_LV1 / FrameHeight);
-	ColumnMatrix = mapWidth / FrameWidth;
-	LoadMap(state);
-
+	
 }
 
 TileMap::~TileMap()
@@ -15,17 +10,11 @@ TileMap::~TileMap()
 
 }
 
-void TileMap::ReadMap(LPCWSTR filename, int State)
+void TileMap::ReadMap(LPCWSTR filename)
 {
 	ifstream file;
 	file.open(filename, ios::in);
 
-	switch (State)
-	{
-	case 1: fit = 130; break;
-	case 2: fit = 106;  break;
-	default:; break;
-	}
 
 	while (!file.eof())
 	{
@@ -43,9 +32,9 @@ void TileMap::LoadMap(int state)
 	sprites = Sprites::GetInstance();
 	switch (state)
 	{
-	case STAGE1:
+	case SCENE1:
 	{
-		ReadMap(L"Scenes\\Scene1.txt", STAGE1);
+		ReadMap(L"Scenes\\Scene1.txt");
 
 		textures->Add(ID_TEX_LEVEL_ONE, L"Scenes\\Scene1.png", D3DCOLOR_XRGB(255, 255, 255));
 
@@ -59,17 +48,17 @@ void TileMap::LoadMap(int state)
 	
 		break;
 	}
-	case STAGE2:
-		ReadMap(L"Scenes\\Scene2.txt", STAGE1);
+	case SCENE2:
+		ReadMap(L"Scenes\\Scene2.txt");
 
 		textures->Add(ID_TEX_LEVEL_TWO, L"Scenes\\Scene2.png", D3DCOLOR_XRGB(255, 255, 255));
 
 		LPDIRECT3DTEXTURE9 state2 = textures->Get(ID_TEX_LEVEL_TWO);
-		for (int i = 0; i < 103; i++)
+		for (int i = 0; i < 102; i++)
 			sprites->Add("TileMap2_" + to_string(i), i * 32, 0, 32 + i * 32, 32, state2);
 
 		animation = new Animation(0);
-		for (int i = 0; i < 103; i++)
+		for (int i = 0; i < 102; i++)
 			animation->Add("TileMap2_" + to_string(i));
 		break;
 	}
@@ -99,9 +88,14 @@ void TileMap::DrawMap(D3DXVECTOR2 cam)
 	}
 }
 
-//void TileMap::Draw()
-//{
-//	AniTile->setCurrentFrame(0);
-//	AniTile->Draw(0, 0);
-//}
-//
+void TileMap::InitMap(int state, int mapWidth, int mapHeight, int frameHeight, int frameWidth)
+{
+	FrameHeight = frameHeight;
+	FrameWidth = frameWidth;
+	ScreenRow = (mapHeight / FrameHeight);
+	ColumnMatrix = mapWidth / FrameWidth;
+	LoadMap(state);
+	RowMatrix = 0;
+	fit = 130;
+}
+

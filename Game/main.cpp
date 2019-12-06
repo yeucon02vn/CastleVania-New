@@ -28,10 +28,10 @@ CGameObject::GetBoundingBox
 #include "Textures.h"
 #include "KeyEventHandler.h"
 #include "StageManager.h"
-
+#include "Manager.h"
 
 Game *game;
-StageManager* scene;
+Manager* scene;
 Textures * textures = Textures::GetInstance();
 Sprites * sprites = Sprites::GetInstance();
 Animations * animations = Animations::GetInstance();
@@ -274,9 +274,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	InitDirectInput();
 	InitKeyboard(hWnd);
 
-	scene = new StageManager();
-	scene->Init(game);
-	scene->LoadStage(STAGE1);
+	scene = new Manager(game);
 
 
 

@@ -43,6 +43,12 @@
     <Filter Include="Library\Inc">
       <UniqueIdentifier>{00d03dd0-2994-4d84-b026-cc8a934e6bec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Grid">
+      <UniqueIdentifier>{1f7d39d2-e4f5-400a-b12f-f23e442fb786}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Enemy">
+      <UniqueIdentifier>{19941bee-80e4-4414-988c-6b0dc1086a31}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animations.cpp">
@@ -107,6 +113,51 @@
     </ClCompile>
     <ClCompile Include="SubWeapon.cpp">
       <Filter>Simon</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Grid.cpp">
+      <Filter>Grid</Filter>
+    </ClCompile>
+    <ClCompile Include="ChangeScene.cpp">
+      <Filter>Object\Static Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Door.cpp">
+      <Filter>Object\Static Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Object\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Zombie.cpp">
+      <Filter>Object\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="BreakWall.cpp">
+      <Filter>Object\Static Object</Filter>
+    </ClCompile>
+    <ClCompile Include="WallPieces.cpp">
+      <Filter>Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Stair.cpp">
+      <Filter>Object\Static Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Bat.cpp">
+      <Filter>Object\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Fishman.cpp">
+      <Filter>Object\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Bubbles.cpp">
+      <Filter>Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Fireball.cpp">
+      <Filter>Object\Static Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Panther.cpp">
+      <Filter>Object\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Water.cpp">
+      <Filter>Object\Static Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -388,6 +439,51 @@
     </ClInclude>
     <ClInclude Include="Library\Inc\xnamath.h">
       <Filter>Library\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Grid.h">
+      <Filter>Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ChangeScene.h">
+      <Filter>Object\Static Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Door.h">
+      <Filter>Object\Static Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Object\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Zombie.h">
+      <Filter>Object\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="BreakWall.h">
+      <Filter>Object\Static Object</Filter>
+    </ClInclude>
+    <ClInclude Include="WallPieces.h">
+      <Filter>Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Stair.h">
+      <Filter>Object\Static Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Bat.h">
+      <Filter>Object\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Panther.h">
+      <Filter>Object\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Fireball.h">
+      <Filter>Object\Static Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Bubbles.h">
+      <Filter>Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Fishman.h">
+      <Filter>Object\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Water.h">
+      <Filter>Object\Static Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -4,7 +4,15 @@
 #include "Ground.h"
 #include "Candle.h"
 #include "Items.h"
-//#include "Knife.h"
+#include "Door.h"
+#include "ChangeScene.h"
+#include "Enemy.h"
+#include "Bat.h"
+#include "Zombie.h"
+#include "Panther.h"
+#include "Fishman.h"
+#include "Fireball.h"
+
 class Simon : public GameObject
 {
 	int hp;
@@ -21,8 +29,11 @@ class Simon : public GameObject
 	bool MaxLevelWhip;
 	DWORD untouchable_start;
 public:
+	bool isWalkThroughDoor;
+	bool autoWalk;
+	int changeScene;
 	bool isCoGround;
-	bool KillAllKey;
+	bool KillAll;
 	int SubWeapon;
 	bool isHitSubWeapon;
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT> *colliable_objects = NULL);
@@ -34,5 +45,11 @@ public:
 	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);
 	bool isMaxLevelWhip() { return MaxLevelWhip; }
 	Simon();
-
+	int GetHP() { return hp; }
+	int GetSubWeapon() { return SubWeapon; }
+	int GetHeart() { return heart; }
+	int GetLife() { return life; }
+	void DoAutoWalk();
+	void CheckCollisionWithEnemyActiveArea(vector<LPGAMEOBJECT>* listObjects);
+	bool CheckCollisionWithItem(vector<LPITEMS> * listItems);
 };

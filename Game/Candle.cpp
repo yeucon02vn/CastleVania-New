@@ -17,8 +17,15 @@ void Candle::GetBoundingBox(float &l, float &t, float &r, float &b)
 {
 	l = x;
 	t = y;
-	r = x + LCANDLE_WIDTH;
-	b = y + LCANDLE_HEIGHT;
+	switch (state)
+	{
+	case ANI_BIG_CANDLE:
+		r = x + LCANDLE_WIDTH;
+		b = y + LCANDLE_HEIGHT;
+	case ANI_SMALL_CANDLE:
+		r = x + MCANDLE_WIDTH;
+		b = y + MCANDLE_HEIGHT;
+	}
 }
 
 void Candle::SetState(int state)

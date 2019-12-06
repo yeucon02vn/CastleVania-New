@@ -2,6 +2,22 @@ item_small_heart_ani		item_small_heart	100
 item_big_heart_ani		item_big_heart	100
 item_whip_ani		item_whip		100
 item_knife_ani		item_knife		100
+item_red_money_bag_ani	item_red_money_bag	100
+item_white_money_bag_ani	item_white_money_bag	100
+item_blue_money_bag_ani	item_blue_money_bag	100
+item_flashing_money_bag_ani	item_red_money_bag	50	item_blue_money_bag	50	item_white_money_bag	50
+item_stop_watch_ani		item_stop_watch	100
+item_cross_ani	item_cross	100
+item_axe_ani	item_axe	100
+item_invisibilitypotion_ani	item_invisibilitypotion	100
+item_treasurechest_ani	item_treasurechest_1	50	item_treasurechest_2	50
+item_boomerang_ani	item_boomerang	100
+item_holywater_ani	item_holywater	100
+item_porkchop_ani	item_porkchop	100
+item_doubleshot_ani	item_doubleshot	100
+item_tripleshot_ani	item_tripleshot	100
+item_magiccrystal_ani	item_magiccrystal_1	50	item_magiccrystal_2	50
+item_crown_ani	item_crown_1	50	item_crown_2	50
 normalwhip_ani	normalwhip_1	100	normalwhip_2	100	normalwhip_3	100
 shortchain_ani	shortchain_1	100	shortchain_2	100	shortchain_3	100
 longchain_ani	longchain_1	25	longchain_2	25	longchain_3	25	longchain_4	25	longchain_5	25	longchain_6	25	longchain_7	25	longchain_8	25	longchain_9	25	longchain_10	25	longchain_11	25	longchain_12	25
@@ -36,3 +52,25 @@ smallcandle_ani	smallcandle_1	150	smallcandle_2	150
 effect_fire_ani	effect_3		200	effect_2		200	effect_1		200
 effect_star_ani	effect_star		100
 weapon_knife_ani	weapon_knife	100
+weapon_stop_watch_ani	weapon_stop_watch	100
+weapon_axe_ani	weapon_axe_1	100	weapon_axe_2	100	weapon_axe_3	100	weapon_axe_4	100
+weapon_holywater_ani	weapon_holywater	100
+weapon_holywatershattered_ani	weapon_holywatershattered_1	100	weapon_holywatershattered_2	100
+weapon_boomerang_ani	weapon_boomerang_1	100	weapon_boomerang_2	100	weapon_boomerang_3
+door1_ani	door1	100
+door2_idle_ani	door2_idle	700
+door2_open_ani	door2_open_1	700	door2_open_2	700	door2_open_3	2000	door2_open_4	700	door2_open_5	1000	
+wall_break_ani	wall_break	100
+wall_piece_ani	wall_piece	100
+leopard_run_ani	leopard_run_1	200	leopard_run_2	200	leopard_run_3	200	leopard_run_4	200
+leopard_idle_ani	leopard_idle	200
+leopard_jump_ani	leopard_jump	200
+stair_leftup_ani	stair_leftup	100
+stair_rightdown_ani	stair_rightdown	100
+zombie_walk_ani	zombie_walk_1	150	zombie_walk_2	150
+vampirebat_fly_ani	vampirebat_fly_1	150	vampirebat_fly_2	150	vampirebat_fly_3	150	vampirebat_fly_4	150
+fishman_walk_ani	fishman_walk_1	200	fishman_walk_2	200
+fishman_jump_ani	fishman_jump	100
+fishman_hit_ani	fishman_hit	1000
+fireball_ani	fireball	100
+bubbles_ani	bubbles	100

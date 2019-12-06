@@ -8,7 +8,7 @@ class SubWeapon : public GameObject
 public:
 	SubWeapon();
 
-	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObject = NULL, bool stopMovement = false);
+	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObject = NULL);
 	virtual void SetPosition(float x, float y);
 	virtual void Render();
 	void SetDestroy(int state) { this->isDestroy = state; }

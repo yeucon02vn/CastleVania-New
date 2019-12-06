@@ -4,7 +4,7 @@
 #include "Textures.h"
 #include "Define.h"
 #include "Candle.h"
-
+#include "BreakWall.h"
 class Whip : public GameObject
 {
 	bool isMaxLevel = false;
