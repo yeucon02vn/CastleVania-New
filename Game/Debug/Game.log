@@ -1,11 +1,6 @@
-﻿  BreakWall.cpp
+﻿  Zombie.cpp
   c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\library\inc\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
 c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\define.h(6): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
   c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\library\inc\dinput.h(42): note: see previous definition of 'DIRECTINPUT_VERSION'
-  Define.h
-  Whip.cpp
-  c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\library\inc\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\define.h(6): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
-  c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\library\inc\dinput.h(42): note: see previous definition of 'DIRECTINPUT_VERSION'
-  Generating Code...
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\zombie.cpp(63): warning C4018: '<': signed/unsigned mismatch
   Game.vcxproj -> C:\Users\Administrator\Desktop\CastleVania\CastleVania\CastleVania-New\Debug\Game.exe

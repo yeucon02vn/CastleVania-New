@@ -5,6 +5,7 @@
 Zombie::Zombie() : Enemy()
 {
 	AddAnimation("zombie_walk_ani");
+	AddAnimation("");
 	HP = 1;
 	score = 100;
 	attack = 2;

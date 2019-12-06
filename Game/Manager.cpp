@@ -109,7 +109,6 @@ void Manager::LoadObjectsFromFile(LPCWSTR FilePath)
 			Zombie * zombie = new Zombie();
 			zombie->SetEntryPosition(pos_x, pos_y);
 			zombie->SetState(ZOMBIE_IDLE);
-			zombie->isDestroy = false;
 			zombie->isDropItem = true;
 			unit = new Unit(grid, zombie, pos_x, pos_y);
 			break;
@@ -119,7 +118,7 @@ void Manager::LoadObjectsFromFile(LPCWSTR FilePath)
 			Panther * panther = new Panther();
 			panther->SetEntryPosition(pos_x, pos_y);
 			panther->SetState(PANTHER_IDLE_INACTIVE);
-			panther->isDestroy = false;
+			panther->isDropItem = true;
 			unit = new Unit(grid, panther, pos_x, pos_y);
 			break;
 		}
@@ -128,7 +127,6 @@ void Manager::LoadObjectsFromFile(LPCWSTR FilePath)
 			Bat * bat = new Bat();
 			bat->SetEntryPosition(pos_x, pos_y);
 			bat->SetState(BAT_IDLE);
-			bat->isDestroy = false;
 			bat->isDropItem = true;
 			unit = new Unit(grid, bat, pos_x, pos_y);
 			break;
@@ -138,6 +136,7 @@ void Manager::LoadObjectsFromFile(LPCWSTR FilePath)
 			FishMan * fishman = new FishMan();
 			fishman->SetEntryPosition(pos_x, pos_y);
 			fishman->SetState(FISHMAN_IDLE);
+			fishman->isDropItem = true;
 			unit = new Unit(grid, fishman, pos_x, pos_y);
 			break;
 		}
@@ -152,7 +151,6 @@ void Manager::LoadObjectsFromFile(LPCWSTR FilePath)
 		{
 			BreakWall * breakwall = new BreakWall();
 			breakwall->SetPosition(pos_x, pos_y);
-			breakwall->isDestroy = false;
 			breakwall->SetState(HIDDEN);
 			breakwall->isDropItem = true;
 			unit = new Unit(grid, breakwall, pos_x, pos_y);
@@ -204,6 +202,31 @@ void Manager::GetColliableObjects(LPGAMEOBJECT curObj, vector<LPGAMEOBJECT>& coO
 				coObjects.push_back(obj);
 		}
 	}
+	else if (dynamic_cast<Zombie*>(curObj))
+	{
+		for (auto obj : listGridObjects)
+		{
+			if (dynamic_cast<Ground*>(obj) || (dynamic_cast<BreakWall*>(obj) && obj->GetState() == HIDDEN))
+				coObjects.push_back(obj);
+		}
+	}
+	else if (dynamic_cast<Panther*>(curObj))
+	{
+		for (auto obj : listGridObjects)
+		{
+			if (dynamic_cast<Ground*>(obj) || (dynamic_cast<BreakWall*>(obj) && obj->GetState() == HIDDEN))
+				coObjects.push_back(obj);
+		}
+	}
+	else if (dynamic_cast<FishMan*>(curObj))
+	{
+		for (auto obj : listGridObjects)
+		{
+			if ((dynamic_cast<BreakWall*>(obj) && obj->GetState() == HIDDEN) ||
+				dynamic_cast<Ground*>(obj) || dynamic_cast<Water*>(obj))
+				coObjects.push_back(obj);
+		}
+	}
 	else if (dynamic_cast<SubWeapon*>(curObj))
 	{
 		SubWeapon * weapon = dynamic_cast<SubWeapon*>(curObj);
@@ -215,17 +238,17 @@ void Manager::GetColliableObjects(LPGAMEOBJECT curObj, vector<LPGAMEOBJECT>& coO
 */
 		for (auto obj : listGridObjects)
 		{
-			if (dynamic_cast<Candle*>(obj) || dynamic_cast<Ground*>(obj) )
+			if (dynamic_cast<Candle*>(obj) || dynamic_cast<Ground*>(obj))
 				coObjects.push_back(obj);
-			/*else if ((dynamic_cast<Zombie*>(obj) || dynamic_cast<VampireBat*>(obj))
+			else if ((dynamic_cast<Zombie*>(obj) || dynamic_cast<Bat*>(obj))
 				&& obj->GetState() == ACTIVE)
 				coObjects.push_back(obj);
-			else if (dynamic_cast<BlackLeopard*>(obj) &&
-				(obj->GetState() == BLACK_LEOPARD_ACTIVE || obj->GetState() == BLACK_LEOPARD_IDLE || obj->GetState() == BLACK_LEOPARD_JUMP))
+			else if (dynamic_cast<Panther*>(obj) &&
+				(obj->GetState() == PANTHER_ACTIVE || obj->GetState() == PANTHER_IDLE || obj->GetState() == PANTHER_JUMP))
 				coObjects.push_back(obj);
 			else if (dynamic_cast<FishMan*>(obj) &&
 				(obj->GetState() == ACTIVE || obj->GetState() == FISHMAN_JUMP || obj->GetState() == FISHMAN_HIT))
-				coObjects.push_back(obj);*/
+				coObjects.push_back(obj);
 		}
 	}
 
@@ -238,16 +261,14 @@ void Manager::GetColliableObjects(LPGAMEOBJECT curObj, vector<LPGAMEOBJECT>& coO
 				coObjects.push_back(obj);
 			else if (dynamic_cast<BreakWall*>(obj) && obj->GetState() == HIDDEN)
 				coObjects.push_back(obj);
-			//else if (simon->isAutoWalk == false) // nếu simon auto-walk sẽ không xét va chạm với enemy
-			//{
-			//	if (dynamic_cast<FireBall*>(obj) && obj->IsEnable() == true)
-			//		coObjects.push_back(obj);
-			//	else if ((dynamic_cast<Zombie*>(obj) || dynamic_cast<BlackLeopard*>(obj) ||
-			//		dynamic_cast<VampireBat*>(obj) || dynamic_cast<Boss*>(obj)) && obj->GetState() == ACTIVE)
-			//		coObjects.push_back(obj);
-			//	else if (dynamic_cast<FishMan*>(obj) && (obj->GetState() == ACTIVE || obj->GetState() == FISHMAN_JUMP))
-			//		coObjects.push_back(obj);
-			//}
+			else if (dynamic_cast<FireBall*>(obj) && obj->isDestroy == false)
+				coObjects.push_back(obj);
+			else if ((dynamic_cast<Zombie*>(obj) || dynamic_cast<Panther*>(obj) ||
+				dynamic_cast<Bat*>(obj)) && obj->GetState() == ACTIVE)
+				// || dynamic_cast<Boss*>(obj))
+				coObjects.push_back(obj);
+			else if (dynamic_cast<FishMan*>(obj) && (obj->GetState() == ACTIVE || obj->GetState() == FISHMAN_JUMP))
+				coObjects.push_back(obj);
 		}
 		for(auto obj : listItems)
 			coObjects.push_back(obj);
@@ -266,7 +287,7 @@ void Manager::Update(DWORD dt)
 	GetColliableObjects(simon, listCoObjects);
 	simon->Update(dt, &listCoObjects);
 	simon->CheckCollisionWithItem(&listItems);
-	simon->CheckCollisionWithEnemyActiveArea(&listCoObjects);
+	simon->CheckCollisionWithEnemyActiveArea(&listGridObjects);
 
 	for (int i = 0; i < listGridObjects.size(); i++)
 	{
