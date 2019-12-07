@@ -27,7 +27,6 @@ CGameObject::GetBoundingBox
 #include "GameObject.h"
 #include "Textures.h"
 #include "KeyEventHandler.h"
-#include "StageManager.h"
 #include "Manager.h"
 
 Game *game;

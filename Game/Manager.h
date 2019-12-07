@@ -20,6 +20,8 @@
 #include "Fishman.h"
 #include "Water.h"
 #include "Fireball.h"
+#include "CheckStair.h"
+
 using namespace std;
 class Manager {
 	int idScene;
@@ -32,7 +34,10 @@ class Manager {
 	vector<LPGAMEOBJECT> listGridObjects;
 	vector<LPITEMS> listItems;
 	vector<LPGAMEOBJECT> listStairs;
-	vector<LPGAMEOBJECT> listDoors;
+	vector<LPGAMEOBJECT> listDoors; 
+	vector<LPGAMEOBJECT> listStaticObjects;
+	vector<LPGAMEOBJECT> listMovingObjects;
+	vector<LPGAMEOBJECT> listEffects;
 	D3DXVECTOR2 pos;
 	Simon * simon;
 	SubWeapon * weapon;
@@ -41,6 +46,12 @@ class Manager {
 	Water * water;
 	bool canControl;
 
+
+	bool isSetSimonAutoWalk = false;	
+	bool isMovingCamera1 = false;
+	bool isMovingCamera2 = false;
+	int countDxCamera = 0;
+	bool isScene2_3 = false;
 public:
 	Manager(Game * game);
 	~Manager();
@@ -51,6 +62,7 @@ public:
 	Simon * GetSimon() { return this->simon; }
 	vector<SubWeapon*> * GetWeapon() { return &listWeapon; }
 	void Update(DWORD dt);
+	void UpdateGrid();
 	void Render();
 	void DeleteObject(LPGAMEOBJECT object, int i);
 	void SetGameState(int gameState);
@@ -60,4 +72,8 @@ public:
 	void SetEnemiesSpawnPositon();
 	void SetInactivationByPosition();
 	bool IsInViewport(LPGAMEOBJECT object);
+	void Simon_Stair_Down();
+	void Simon_Stair_Up();
+	bool Simon_Stair_Stand();
+	bool SimonWalkThroughDoor(); 
 };

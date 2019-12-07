@@ -1,6 +1,11 @@
 #pragma once
 #include "GameObject.h"
-
+#include "Zombie.h"
+#include "Panther.h"
+#include "Fishman.h"
+#include "Fireball.h"
+#include "Bat.h"
+#include "BreakWall.h"
 class SubWeapon : public GameObject
 {
 

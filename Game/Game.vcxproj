@@ -126,6 +126,7 @@
     <ClCompile Include="BreakWall.cpp" />
     <ClCompile Include="Bubbles.cpp" />
     <ClCompile Include="ChangeScene.cpp" />
+    <ClCompile Include="CheckStair.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Define.h" />
     <ClCompile Include="Door.cpp" />
@@ -135,7 +136,6 @@
     <ClCompile Include="Fishman.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="GameStage.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="Items.cpp" />
@@ -146,8 +146,6 @@
     <ClCompile Include="Panther.cpp" />
     <ClCompile Include="Simon.cpp" />
     <ClCompile Include="Sprites.cpp" />
-    <ClCompile Include="Stage1.cpp" />
-    <ClCompile Include="StageManager.cpp" />
     <ClCompile Include="Stair.cpp" />
     <ClCompile Include="SubWeapon.cpp" />
     <ClCompile Include="Textures.cpp" />
@@ -164,6 +162,7 @@
     <ClInclude Include="BreakWall.h" />
     <ClInclude Include="Bubbles.h" />
     <ClInclude Include="ChangeScene.h" />
+    <ClInclude Include="CheckStair.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="Door.h" />
     <ClInclude Include="EffectDead.h" />
@@ -172,7 +171,6 @@
     <ClInclude Include="Fishman.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
-    <ClInclude Include="GameStage.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="Items.h" />
@@ -256,8 +254,6 @@
     <ClInclude Include="Panther.h" />
     <ClInclude Include="Simon.h" />
     <ClInclude Include="Sprites.h" />
-    <ClInclude Include="Stage1.h" />
-    <ClInclude Include="StageManager.h" />
     <ClInclude Include="Stair.h" />
     <ClInclude Include="SubWeapon.h" />
     <ClInclude Include="Textures.h" />

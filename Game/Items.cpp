@@ -4,7 +4,7 @@
 
 Items::Items() : GameObject()
 {
-	vy = ITEM_FALLING_SPEED;
+
 	timeDelete = -1;
 	// thêm các hình ảnh từ file
 	AddAnimation("item_small_heart_ani");
@@ -15,7 +15,13 @@ Items::Items() : GameObject()
 
 void Items::Render()
 {
-	animations[state]->Render(nx, x, y);
+	int alpha = 255;
+
+	if (GetTickCount() - timeDelete > ITEM_TIME_DESTROYED / 2)
+	{
+		alpha -= 100 * (rand() % 2);
+	}
+	animations[state]->Render(nx, x, y, alpha);
 }
 
 void Items::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
@@ -35,12 +41,16 @@ void Items::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 			return;
 		}
 	}
-	if (state == ITEM_SMALL_HEART)
-	{
-
-	}
+	
 
 	GameObject::Update(dt);
+	//if (state == ITEM_SMALL_HEART && vy != 0)
+	//{
+	//	vx += vx_Itemfalling;
+	//	if (vx >= ITEM_LIMITED_X || vx <= -ITEM_LIMITED_X)
+	//		vx_Itemfalling *= -1; // đổi chiều
+	//}
+
 
 	// Check collision between item and ground (falling on ground)
 	vector<LPCOLLISIONEVENT> coEvents;
@@ -75,7 +85,12 @@ void Items::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 				y += min_ty * dy + ny * 0.4f;
 
 				if (nx != 0) vx = 0;
-				if (ny != 0) vy = 0;
+
+				if (ny != 0)
+				{
+					vx_Itemfalling = 0;
+					vy = 0;
+				}
 			}
 			else
 			{
@@ -110,16 +125,16 @@ void Items::RandomItem()
 	{
 		if (checkMaxLevelWhip == false)
 		{
-			state = ITEM_WHIP;
+			SetState(ITEM_WHIP);
 		}
 		else
 		{
-			state = ITEM_SMALL_HEART;
+			SetState(ITEM_SMALL_HEART);
 		}
 	}
 	else if (percent < 70)
 	{
-		state = ITEM_BIG_HEART;
+		SetState(ITEM_BIG_HEART);
 	}
 	else
 	{
@@ -132,7 +147,7 @@ void Items::RandomSubWeapon()
 	//int percent = rand() % 100;
 	//if (percent < 40)
 	//{
-		state = ITEM_KNIFE;
+	SetState(ITEM_KNIFE);
 	//}
 
 }
@@ -161,6 +176,24 @@ void Items::GetBoundingBox(float & left, float & top, float & right, float & bot
 		bottom = y + WEAPON_KNIFE_BBOX_HEIGHT;
 		break;
 	default:
+		break;
+	}
+}
+
+void Items::SetState(int state)
+{
+	GameObject::SetState(state);
+
+	switch (state)
+	{
+	case ITEM_SMALL_HEART:
+		vx_Itemfalling = ITEM_FALLING_SPEED_X;
+		vx = 0;
+		vy = ITEM_FALLING_SPEED_Y;
+		break;
+	default:
+		vx = 0;
+		vy = ITEM_FALLING_SPEED_Y;
 		break;
 	}
 }

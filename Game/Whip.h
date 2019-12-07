@@ -5,6 +5,11 @@
 #include "Define.h"
 #include "Candle.h"
 #include "BreakWall.h"
+#include "Fireball.h"
+#include "Bat.h"
+#include "Zombie.h"
+#include "FishMan.h"
+#include "Panther.h"
 class Whip : public GameObject
 {
 	bool isMaxLevel = false;

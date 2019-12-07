@@ -123,6 +123,10 @@ wall_break	653	592	685	624
 wall_piece		685	592	717	624
 zombie_walk_1	821	634	855	698
 zombie_walk_2	855	634	887	698
+vampirebat_fly_1	65	18	97	50
+vampirebat_fly_2	33	18	65	50
+vampirebat_fly_3	65	18	97	50
+vampirebat_fly_4	97	18	129	50
 stair_leftup	483	504	515	536
 stair_rightdown	515	504	547	536
 leopard_idle	723	700	787	732

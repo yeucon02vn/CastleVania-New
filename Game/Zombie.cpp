@@ -14,14 +14,16 @@ Zombie::Zombie() : Enemy()
 
 void Zombie::Update(DWORD dt, vector<LPGAMEOBJECT>* coObject)
 {
-	if (state == ZOMBIE_IDLE)
-		return;
-
+	
 	if (IsRespawn())
 	{
 		SetState(ZOMBIE_IDLE);
 		return;
 	}
+
+	if (state == ZOMBIE_IDLE)
+		return;
+
 
 	Enemy::Update(dt);
 
@@ -86,6 +88,7 @@ void Zombie::SetState(int state)
 		x = entryPosition.x;
 		y = entryPosition.y;
 		vx = 0;
+		isDestroy = false;
 		isFinishRespawn = false;
 		StartRespawnTimeCounter();
 		break;

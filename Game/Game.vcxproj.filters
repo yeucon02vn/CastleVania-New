@@ -78,15 +78,6 @@
     <ClCompile Include="main.cpp">
       <Filter>WinMain</Filter>
     </ClCompile>
-    <ClCompile Include="Stage1.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="GameStage.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="StageManager.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="UI.cpp">
       <Filter>UI</Filter>
     </ClCompile>
@@ -159,6 +150,9 @@
     <ClCompile Include="Water.cpp">
       <Filter>Object\Static Object</Filter>
     </ClCompile>
+    <ClCompile Include="CheckStair.cpp">
+      <Filter>Object\Static Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h">
@@ -184,15 +178,6 @@
     </ClInclude>
     <ClInclude Include="Ground.h">
       <Filter>Object\Static Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Stage1.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="GameStage.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="StageManager.h">
-      <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="UI.h">
       <Filter>UI</Filter>
@@ -483,6 +468,9 @@
       <Filter>Object\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Water.h">
+      <Filter>Object\Static Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CheckStair.h">
       <Filter>Object\Static Object</Filter>
     </ClInclude>
   </ItemGroup>

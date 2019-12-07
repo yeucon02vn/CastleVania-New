@@ -56,11 +56,10 @@ bool Enemy::IsRespawn()
 		{
 			float remain = GetTickCount() - startTime;
 
-			if (remain > (DWORD)ENEMY_DELAY_RESPAWN_TIME)
+			if (remain > (DWORD)450)
 			{
 				start = false;
 				startTime = 0;
-				isDestroy = false;
 				return true;
 			}
 		}

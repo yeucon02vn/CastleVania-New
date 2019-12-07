@@ -12,7 +12,7 @@
 #include "Panther.h"
 #include "Fishman.h"
 #include "Fireball.h"
-
+#include "Water.h"
 class Simon : public GameObject
 {
 	int hp;
@@ -22,13 +22,21 @@ class Simon : public GameObject
 	int startTime;
 	bool start;
 	Whip *whip;
-	
+
 	int untouchable;
 	int action;
 	bool isSit;
 	bool MaxLevelWhip;
 	DWORD untouchable_start;
+
+
+	float autoWalkDistance = 0;		
+	int stateAfterAutoWalk = -1;	
+	int nxAfterAutoWalk = 0;		
+
 public:
+	bool canMoveUpStair;
+	bool canMoveDownStair;
 	bool isWalkThroughDoor;
 	bool autoWalk;
 	int changeScene;
@@ -36,12 +44,15 @@ public:
 	bool KillAll;
 	int SubWeapon;
 	bool isHitSubWeapon;
+	int stairDirection = 0;
+	bool isStandOnStair = false;
+	D3DXVECTOR2 goToStair;
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT> *colliable_objects = NULL);
 	virtual void Render();
 	void SetState(int state);
 	void reset();
 	void StartUntouchable() { untouchable = 1; untouchable_start = GetTickCount(); }
-	bool isAttack() { return state == SIMON_SIT_ATTACK || state == SIMON_STAND_ATTACK; }
+	bool isAttack();
 	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);
 	bool isMaxLevelWhip() { return MaxLevelWhip; }
 	Simon();
@@ -52,4 +63,10 @@ public:
 	void DoAutoWalk();
 	void CheckCollisionWithEnemyActiveArea(vector<LPGAMEOBJECT>* listObjects);
 	bool CheckCollisionWithItem(vector<LPITEMS> * listItems);
+	bool CheckCollisionWithStair(vector<LPGAMEOBJECT>* listStair);
+	void LoseHP(int x);
+	void AutoWalk(float distance, int new_state, int new_nx);
+	
+	
+	void StandOnStair() { vx = vy = 0; }
 };

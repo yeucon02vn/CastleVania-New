@@ -9,6 +9,7 @@ class Items : public GameObject
 private:
 	DWORD timeDelete;   // dùng để hủy item sau 1 khoảng time
 	bool checkMaxLevelWhip;
+	float vx_Itemfalling;
 public:
 	Items();
 
@@ -20,6 +21,7 @@ public:
 	void RandomSubWeapon();
 	void isMax() { checkMaxLevelWhip = true; }
 	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);
+	virtual void SetState(int state);
 };
 
 typedef Items * LPITEMS;

@@ -5,7 +5,7 @@
 Bat::Bat() : Enemy()
 {
 	AddAnimation("vampirebat_fly_ani");
-
+	AddAnimation("");
 	velocityVariation = 0.004f;
 
 	HP = 1;
@@ -40,7 +40,7 @@ void Bat::Update(DWORD dt, vector<LPGAMEOBJECT>* coObject)
 void Bat::Render()
 {
 	if (state != BAT_IDLE)
-		animations[state]->Render(1, nx, x, y);
+		animations[state]->Render(nx, x, y);
 }
 
 void Bat::SetState(int state)
@@ -61,6 +61,7 @@ void Bat::SetState(int state)
 		x = entryPosition.x;
 		y = entryPosition.y;
 		vx = 0;
+		isDestroy = false;
 		vy = 0;
 		isFinishRespawn = false;
 		StartRespawnTimeCounter();

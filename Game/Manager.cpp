@@ -109,7 +109,6 @@ void Manager::LoadObjectsFromFile(LPCWSTR FilePath)
 			Zombie * zombie = new Zombie();
 			zombie->SetEntryPosition(pos_x, pos_y);
 			zombie->SetState(ZOMBIE_IDLE);
-			zombie->isDropItem = true;
 			unit = new Unit(grid, zombie, pos_x, pos_y);
 			break;
 		}
@@ -118,7 +117,6 @@ void Manager::LoadObjectsFromFile(LPCWSTR FilePath)
 			Panther * panther = new Panther();
 			panther->SetEntryPosition(pos_x, pos_y);
 			panther->SetState(PANTHER_IDLE_INACTIVE);
-			panther->isDropItem = true;
 			unit = new Unit(grid, panther, pos_x, pos_y);
 			break;
 		}
@@ -127,7 +125,6 @@ void Manager::LoadObjectsFromFile(LPCWSTR FilePath)
 			Bat * bat = new Bat();
 			bat->SetEntryPosition(pos_x, pos_y);
 			bat->SetState(BAT_IDLE);
-			bat->isDropItem = true;
 			unit = new Unit(grid, bat, pos_x, pos_y);
 			break;
 		}
@@ -136,7 +133,6 @@ void Manager::LoadObjectsFromFile(LPCWSTR FilePath)
 			FishMan * fishman = new FishMan();
 			fishman->SetEntryPosition(pos_x, pos_y);
 			fishman->SetState(FISHMAN_IDLE);
-			fishman->isDropItem = true;
 			unit = new Unit(grid, fishman, pos_x, pos_y);
 			break;
 		}
@@ -164,6 +160,14 @@ void Manager::LoadObjectsFromFile(LPCWSTR FilePath)
 			unit = new Unit(grid, changeScene, pos_x, pos_y);
 			break;
 		}
+		/*case CHECKSTAIR:
+		{
+			CheckStair * checkstair = new CheckStair();
+			checkstair->SetPosition(pos_x, pos_y);
+			checkstair->SetState(state);
+			unit = new Unit(grid, checkstair, pos_x, pos_y);
+			break;
+		}*/
 	
 		default:
 			break;
@@ -177,8 +181,10 @@ void Manager::GetObjectFromGrid()
 {
 	listUnits.clear();
 	listGridObjects.clear();
-
-
+	listStairs.clear();
+	listDoors.clear();
+	listStaticObjects.clear();
+	listMovingObjects.clear();
 
 	grid->Get(game->getCamPosition(), listUnits);
 
@@ -188,6 +194,16 @@ void Manager::GetObjectFromGrid()
 	{
 		LPGAMEOBJECT obj = listUnits[i]->GetObj();
 		listGridObjects.push_back(obj);
+
+		if (dynamic_cast<Stair*>(obj))
+			listStairs.push_back(obj);
+		else if (dynamic_cast<Door*>(obj))
+			listDoors.push_back(obj);
+		else if (dynamic_cast<Candle*>(obj) ||
+			dynamic_cast<Water*>(obj) || dynamic_cast<BreakWall*>(obj) || dynamic_cast<Ground*>(obj))
+			listStaticObjects.push_back(obj);
+		else
+			listMovingObjects.push_back(obj);
 	}
 }
 
@@ -198,7 +214,7 @@ void Manager::GetColliableObjects(LPGAMEOBJECT curObj, vector<LPGAMEOBJECT>& coO
 	{
 		for (auto obj : listGridObjects)
 		{
-			if (dynamic_cast<Ground*>(obj))
+			if (dynamic_cast<Ground*>(obj) || (dynamic_cast<BreakWall*>(obj) && obj->GetState() == HIDDEN))
 				coObjects.push_back(obj);
 		}
 	}
@@ -233,12 +249,9 @@ void Manager::GetColliableObjects(LPGAMEOBJECT curObj, vector<LPGAMEOBJECT>& coO
 
 		coObjects.push_back(simon); // dùng để xét va chạm của Simon với boomerang
 
-	/*	if (isBossFighting == true && boss->GetState() == BOSS_ACTIVE && weapon->GetTargetTypeHit() != BOSS)
-			coObjects.push_back(boss);
-*/
 		for (auto obj : listGridObjects)
 		{
-			if (dynamic_cast<Candle*>(obj) || dynamic_cast<Ground*>(obj))
+			if (dynamic_cast<Candle*>(obj) || dynamic_cast<FireBall*>(obj))
 				coObjects.push_back(obj);
 			else if ((dynamic_cast<Zombie*>(obj) || dynamic_cast<Bat*>(obj))
 				&& obj->GetState() == ACTIVE)
@@ -251,24 +264,25 @@ void Manager::GetColliableObjects(LPGAMEOBJECT curObj, vector<LPGAMEOBJECT>& coO
 				coObjects.push_back(obj);
 		}
 	}
-
 	else if (dynamic_cast<Simon*>(curObj))
 	{
 		for (auto obj : listGridObjects)
 		{
 			if (dynamic_cast<Door*>(obj) || dynamic_cast<Ground*>(obj) ||
-				dynamic_cast<ChangeScene*>(obj) || dynamic_cast<Candle*>(obj))
+				dynamic_cast<ChangeScene*>(obj) || dynamic_cast<Water*>(obj) || dynamic_cast<Candle*>(obj))
 				coObjects.push_back(obj);
 			else if (dynamic_cast<BreakWall*>(obj) && obj->GetState() == HIDDEN)
 				coObjects.push_back(obj);
-			else if (dynamic_cast<FireBall*>(obj) && obj->isDestroy == false)
-				coObjects.push_back(obj);
-			else if ((dynamic_cast<Zombie*>(obj) || dynamic_cast<Panther*>(obj) ||
-				dynamic_cast<Bat*>(obj)) && obj->GetState() == ACTIVE)
-				// || dynamic_cast<Boss*>(obj))
-				coObjects.push_back(obj);
-			else if (dynamic_cast<FishMan*>(obj) && (obj->GetState() == ACTIVE || obj->GetState() == FISHMAN_JUMP))
-				coObjects.push_back(obj);
+			else if (simon->autoWalk == false) // nếu simon auto-walk sẽ không xét va chạm với enemy
+			{
+				if (dynamic_cast<FireBall*>(obj) && obj->isDestroy == false)
+					coObjects.push_back(obj);
+				else if ((dynamic_cast<Zombie*>(obj) || dynamic_cast<Panther*>(obj) ||
+					dynamic_cast<Bat*>(obj) ) && obj->GetState() == ACTIVE)
+					coObjects.push_back(obj);
+				else if (dynamic_cast<FishMan*>(obj) && (obj->GetState() == ACTIVE || obj->GetState() == FISHMAN_JUMP))
+					coObjects.push_back(obj);
+			}
 		}
 		for(auto obj : listItems)
 			coObjects.push_back(obj);
@@ -278,12 +292,18 @@ void Manager::GetColliableObjects(LPGAMEOBJECT curObj, vector<LPGAMEOBJECT>& coO
 
 void Manager::Update(DWORD dt)
 {
+	if (SimonWalkThroughDoor() == true)
+		return;
+
 	if (canControl)
 		Control();
 
-
+	
 	vector<LPGAMEOBJECT> listCoObjects;
 	GetObjectFromGrid();
+
+	SetEnemiesSpawnPositon();
+
 	GetColliableObjects(simon, listCoObjects);
 	simon->Update(dt, &listCoObjects);
 	simon->CheckCollisionWithItem(&listItems);
@@ -303,6 +323,10 @@ void Manager::Update(DWORD dt)
 		}
 	}
 
+	for (int i = 0; i < listEffects.size(); i++)
+	{
+		listEffects[i]->Update(dt);
+	}
 	for (int i = 0; i < listItems.size(); i++)
 	{
 		LPGAMEOBJECT object = listItems[i];
@@ -322,15 +346,8 @@ void Manager::Update(DWORD dt)
 		GetColliableObjects(object, listCoObjects);
 		listWeapon[0]->Update(dt, &listCoObjects);
 	}
-
-	/*for (int i = 0; i < listUnits.size(); i++)
-	{
-		LPGAMEOBJECT obj = listUnits[i]->GetObj();
-
-		float newPos_x, newPos_y;
-		obj->GetPosition(newPos_x, newPos_y);
-		listUnits[i]->Move(newPos_x, newPos_y);
-	}*/
+	// update vị trí của quái vào cell mới
+	UpdateGrid();
 	fnChangeScene();
 	if (idScene == SCENE1)
 	{
@@ -347,18 +364,39 @@ void Manager::Update(DWORD dt)
 		{
 			simon->getX(pos.x);
 			pos.x -= SCREEN_WIDTH / 2;
+			
 			game->setCamPosition(pos.x, 0);
 		}
 	}
+
+	SetInactivationByPosition();
 }
 
 void Manager::Render()
 {
 	tileMap->DrawMap(game->getCamPosition());
 	//ui->Render();
-	for (int i = 0; i < listGridObjects.size(); i++)
+	
+	for (int i = 0; i < listStaticObjects.size(); i++)
+	{		
+		listStaticObjects[i]->Render();
+	}
+	for (int i = 0; i < listMovingObjects.size(); i++)
 	{
-		listGridObjects[i]->Render();
+		listMovingObjects[i]->Render();
+	}
+
+	if (listEffects.size() != 0)
+	{
+		for (int i = 0; i < listEffects.size(); i++)
+		{
+			if(listEffects[i]->isDestroy == false)
+				listEffects[i]->Render();
+		}
+	}
+	for (int i = 0; i < listStairs.size(); i++)
+	{
+		listStairs[i]->Render();
 	}
 	simon->Render();
 	for (int i = 0; i < listItems.size(); i++)
@@ -366,7 +404,27 @@ void Manager::Render()
 		listItems[i]->Render();
 	}
 
+	for (int i = 0; i < listDoors.size(); i++)
+	{
+		listDoors[i]->Render();
+	}
+
 	listWeapon[0]->Render();
+}
+
+void Manager::UpdateGrid()
+{
+	GetObjectFromGrid();
+	for (int i = 0; i < listUnits.size(); i++)
+	{
+		LPGAMEOBJECT obj = listUnits[i]->GetObj();
+		if (dynamic_cast<Enemy*>(obj))
+		{
+			float newPos_x, newPos_y;
+			obj->GetPosition(newPos_x, newPos_y);
+			listUnits[i]->Move(newPos_x, newPos_y);
+		}
+	}
 }
 
 void Manager::DeleteObject(LPGAMEOBJECT object, int i)
@@ -380,6 +438,11 @@ void Manager::DeleteObject(LPGAMEOBJECT object, int i)
 		item->isEffect = false;
 		item->SetPosition(object->x, object->y);
 		listItems.push_back(item);
+		if (dynamic_cast<BreakWall*>(object))
+		{
+			object->isDestroy = false;
+			return;
+		}
 	}
 
 	if (object->isEffect == false)
@@ -388,13 +451,17 @@ void Manager::DeleteObject(LPGAMEOBJECT object, int i)
 		effect->SetState(EFFECTDEAD_STAR);
 		effect->SetPosition(object->x, object->y);
 		effect->isEffect = true;
-		listGridObjects.push_back(effect);
+		listEffects.push_back(effect);
 
 		effect = new EffectDead();
 		effect->SetState(EFFECTDEAD_FIRE);
 		effect->isEffect = true;
 		effect->SetPosition(object->x, object->y);
-		listGridObjects.push_back(effect);
+		listEffects.push_back(effect);
+		if (dynamic_cast<Enemy*>(object))
+		{
+			object->SetState(INACTIVE);
+		}
 	}
 	if (dynamic_cast<Enemy*>(object))
 	{
@@ -492,8 +559,6 @@ void Manager::SetInactivationByPosition()
 
 void Manager::SetEnemiesSpawnPositon()
 {
-
-
 	for (auto obj : listGridObjects)
 	{
 		if (dynamic_cast<Zombie*>(obj))
@@ -602,7 +667,7 @@ void Manager::SetEnemiesSpawnPositon()
 
 void Manager::Control()
 {
-	if (simon->isAttack() || simon->GetState() == SIMON_EFFECT || simon->autoWalk)
+	if (simon->isAttack() || simon->GetState() == SIMON_EFFECT || simon->autoWalk || simon->GetState() == SIMON_DEFLECT || simon->GetState() == SIMON_DIE)
 		return;
 
 	if (IsKeyPress(DIK_SPACE))
@@ -611,8 +676,18 @@ void Manager::Control()
 			return;
 		simon->SetState(SIMON_JUMP);
 	}
+	else if (IsKeyDown(DIK_K))
+	{
+		simon->SetPosition(simon->x + 50, simon->y);
+	}
 	else if (IsKeyDown(DIK_UP))
 	{
+		if (simon->CheckCollisionWithStair(&listStairs) == true)
+		{
+			Simon_Stair_Up();
+			return;
+		}
+
 		if (IsKeyPress(DIK_Z))
 		{
 			//listWeapon[0]->isDestroy == true;
@@ -658,6 +733,15 @@ void Manager::Control()
 	}
 	else if (IsKeyDown(DIK_LEFT))
 	{
+		if(simon->CheckCollisionWithStair(&listStairs) == true && simon->isStandOnStair == true)
+		{
+			if (simon->stairDirection == 1) // cầu thang trái dưới - phải trên
+				Simon_Stair_Down();
+			else
+				Simon_Stair_Up();
+
+			return;
+		}
 		if (simon->isCoGround == false)
 			return;
 		simon->SetState(SIMON_WALK);
@@ -665,6 +749,15 @@ void Manager::Control()
 	}
 	else if (IsKeyDown(DIK_RIGHT))
 	{
+		if (simon->CheckCollisionWithStair(&listStairs) == true && simon->isStandOnStair == true)
+		{
+			if (simon->stairDirection == 1) // cầu thang trái dưới - phải trên
+				Simon_Stair_Up();
+			else
+				Simon_Stair_Down();
+
+			return;
+		}
 		if (simon->isCoGround == false)
 			return;
 		simon->SetState(SIMON_WALK);
@@ -673,15 +766,34 @@ void Manager::Control()
 
 	else if (IsKeyDown(DIK_DOWN))
 	{
+		if (simon->CheckCollisionWithStair(&listStairs) == true)
+		{
+			Simon_Stair_Down();
+			return;
+		}
 		if (simon->isCoGround == false)
 			return;
 		simon->SetState(SIMON_SIT);
 	}
 	else
 	{
-		if (simon->isCoGround == false || simon->isAttack() == true)
+		if (simon->CheckCollisionWithStair(&listStairs) == true)
+		{
+			if (Simon_Stair_Stand() == true)
+				return;
+		}
+
+		if (simon->isCoGround == false || simon->isAttack())
 			return;
 		simon->SetState(SIMON_STAND_IDLE);
+	}
+	if (IsKeyDown(DIK_1))
+	{
+		Init(SCENE1);
+	}
+	else if (IsKeyDown(DIK_2))
+	{
+		Init(SCENE2);
 	}
 }
 
@@ -689,4 +801,179 @@ void Manager::fnChangeScene()
 {
 	 if (idScene == SCENE1 && simon->changeScene == SCENE2)
 		Init(SCENE2);
+}
+
+void Manager::Simon_Stair_Down()
+{
+	int stairDirection = simon->stairDirection;
+
+	if (simon->canMoveDownStair == false)
+	{
+		if (simon->isStandOnStair == true)
+			simon->SetState(SIMON_STAND_IDLE);
+		else
+			simon->SetState(SIMON_SIT);
+
+		return;
+	}
+
+	// Auto-walk của Simon đi đến đúng đầu cầu thang rồi mới bước xuống
+	if (simon->isStandOnStair == false)
+	{
+		float simon_goto_x = simon->goToStair.x;
+		float simon_x = simon->x;
+
+		if (stairDirection == -1) simon_goto_x -= 28.0f;
+
+		if (simon_goto_x < simon_x) simon->setNx(-1);
+		else if (simon_goto_x > simon_x) simon->setNx(1);
+		else return;
+
+		simon->SetState(SIMON_WALK);
+		simon->vy = 0;
+		simon->AutoWalk(simon_goto_x - simon_x, SIMON_STAIR_DOWN, -stairDirection);
+		simon->isStandOnStair = true;
+
+		return;
+	}
+	else
+	{
+		simon->setNx(-simon->stairDirection);
+		simon->SetState(SIMON_STAIR_DOWN);
+	}
+
+	return;
+}
+
+void Manager::Simon_Stair_Up()
+{
+	int stairDirection = simon->stairDirection;
+
+	if (simon->canMoveUpStair == false)
+	{
+		if (simon->isStandOnStair == true)
+		{
+			int nx = simon->stairDirection;
+			simon->setNx(nx);
+			simon->SetState(SIMON_STAIR_UP);
+			simon->AutoWalk(14 * nx, SIMON_STAND_IDLE, nx);
+		}
+
+		return;
+	}
+
+	// Auto-walk của Simon đi đến đúng chân cầu thang rồi mới bước lên
+	if (simon->isStandOnStair == false)
+	{
+
+		float simon_goto_x = simon->goToStair.x;
+		float simon_x = simon->x;
+
+		if (stairDirection == 1) simon_goto_x -= 31.0f;
+		else simon_goto_x += 5.0f;
+
+		if (simon_goto_x < simon_x) simon->setNx(-1);
+		else if (simon_goto_x > simon_x)  simon->setNx(1);
+		else return;
+
+		simon->SetState(SIMON_WALK);
+		simon->vy = 0;
+		simon->AutoWalk(simon_goto_x - simon_x, SIMON_STAIR_UP, stairDirection);
+		simon->isStandOnStair = true;
+
+		return;
+	}
+	else
+	{
+		simon->setNx(stairDirection);
+		simon->SetState(SIMON_STAIR_UP);
+	}
+
+	return;
+}
+
+bool Manager::Simon_Stair_Stand()
+{
+	if (simon->GetState() == SIMON_STAIR_UP || simon->GetState() == SIMON_STAIR_DOWN ||
+		simon->GetState() == SIMON_HIT_STAIR_UP || simon->GetState() == SIMON_HIT_STAIR_DOWN)
+	{
+		if (simon->GetState() == SIMON_HIT_STAIR_UP)
+		{
+			simon->SetState(SIMON_STAIR_UP);
+		}
+		else if (simon->GetState() == SIMON_HIT_STAIR_DOWN)
+		{
+			simon->SetState(SIMON_STAIR_DOWN);
+		}
+
+		simon->StandOnStair();
+		simon->reset();
+
+		//simon->animations[STAIR_DOWN]->Reset();
+
+		return true;
+	}
+
+	return false;
+}
+
+bool Manager::SimonWalkThroughDoor()
+{
+	if (simon->isWalkThroughDoor == true && simon->isCoGround == true)
+	{
+		simon->isWalkThroughDoor = false;
+		
+		simon->setNx(1);
+		simon->SetState(SIMON_STAND_IDLE);
+
+		isMovingCamera1 = true;
+		countDxCamera = 0;
+	}
+
+	if (isMovingCamera1 == true)
+	{
+		if (countDxCamera < 224)			// Di chuyển camera một đoạn 224
+		{
+			countDxCamera += 2;
+
+			D3DXVECTOR2 cam = game->getCamPosition();
+			game->setCamPosition(cam.x + 2, cam.y);
+
+			return true;
+		}
+
+		if (isSetSimonAutoWalk == false)	// AutoWalk
+		{
+			isSetSimonAutoWalk = true;
+
+			simon->SetState(SIMON_WALK);
+			simon->vy = 0;
+			simon->vx = SIMON_WALKING_LOWER_SPEED;
+			simon->AutoWalk(120, SIMON_STAND_IDLE, 1);
+		}
+		else
+		{
+			if (simon->autoWalk == false)
+			{
+				isMovingCamera2 = true;
+
+				if (countDxCamera < 480)	// Di chuyển camera thêm một đoạn -> 480
+				{
+					countDxCamera += 2;
+
+					D3DXVECTOR2 cam = game->getCamPosition();
+					game->setCamPosition(cam.x + 2, cam.y);
+					return true;
+				}
+				else
+				{
+					isMovingCamera1 = false;
+					isMovingCamera2 = false;
+					isSetSimonAutoWalk = false;
+					countDxCamera = 0;
+				}
+			}
+		}
+	}
+	return false;
 }
