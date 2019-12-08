@@ -4,6 +4,7 @@
 #include <vector>
 #include "Animations.h"
 #include "Define.h"
+#include <algorithm>
 using namespace std;
 
 class GameObject;

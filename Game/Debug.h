@@ -7,6 +7,6 @@
 #include <time.h>
 #include <stdlib.h>
 
-void DebugOut(wchar_t *fmt, ...);
+void DebugOut(const wchar_t *fmt, ...);
 
 

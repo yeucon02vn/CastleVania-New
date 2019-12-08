@@ -25,8 +25,6 @@
 using namespace std;
 class Manager {
 	int idScene;
-
-
 	Grid * grid;
 	Unit * unit;
 	Game *game;
@@ -39,7 +37,7 @@ class Manager {
 	vector<LPGAMEOBJECT> listMovingObjects;
 	vector<LPGAMEOBJECT> listEffects;
 	D3DXVECTOR2 pos;
-	Simon * simon;
+	Simon * simon = NULL;
 	SubWeapon * weapon;
 	vector<SubWeapon*> listWeapon;
 	TileMap * tileMap;
@@ -76,4 +74,5 @@ public:
 	void Simon_Stair_Up();
 	bool Simon_Stair_Stand();
 	bool SimonWalkThroughDoor(); 
+	bool CheckSimonCollisionStair();
 };

@@ -7,7 +7,7 @@ Manager::Manager(Game * game)
 	// INIT
 	simon = new Simon();
 	canControl = true;
-	for (int i = 1; i <= 3; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		weapon = new SubWeapon();
 		weapon->SetDestroy(true);
@@ -36,12 +36,12 @@ void Manager::Init(int idScene)
 		LoadObjectsFromFile(L"Scenes\\Scene2_objects.txt");
 		SetGameState(SCENE2);
 		break;
-	case SCENE3:
-		grid = new Grid(1024, 480);
-		LoadObjectsFromFile(L"Scenes\\Scene3_objects.txt");
-		//simon->SetState(STAIR_DOWN);
-		SetGameState(SCENE3);
-		break;
+	//case SCENE3:
+	//	grid = new Grid(1024, 480);
+	//	LoadObjectsFromFile(L"Scenes\\Scene3_objects.txt");
+	//	//simon->SetState(STAIR_DOWN);
+	//	SetGameState(SCENE3);
+	//	break;
 	default:
 		break;
 	}
@@ -381,6 +381,10 @@ void Manager::Render()
 	{		
 		listStaticObjects[i]->Render();
 	}
+	for (int i = 0; i < listStairs.size(); i++)
+	{
+		listStairs[i]->Render();
+	}
 	for (int i = 0; i < listMovingObjects.size(); i++)
 	{
 		listMovingObjects[i]->Render();
@@ -394,11 +398,9 @@ void Manager::Render()
 				listEffects[i]->Render();
 		}
 	}
-	for (int i = 0; i < listStairs.size(); i++)
-	{
-		listStairs[i]->Render();
-	}
 	simon->Render();
+
+	
 	for (int i = 0; i < listItems.size(); i++)
 	{
 		listItems[i]->Render();
@@ -667,7 +669,7 @@ void Manager::SetEnemiesSpawnPositon()
 
 void Manager::Control()
 {
-	if (simon->isAttack() || simon->GetState() == SIMON_EFFECT || simon->autoWalk || simon->GetState() == SIMON_DEFLECT || simon->GetState() == SIMON_DIE)
+	if (simon->isAttack() || simon->GetState() == SIMON_EFFECT || simon->autoWalk || simon->GetState() == SIMON_DEFLECT || simon->GetState() == SIMON_DIE || simon->isFinishDelayAnimation == false)
 		return;
 
 	if (IsKeyPress(DIK_SPACE))
@@ -682,7 +684,7 @@ void Manager::Control()
 	}
 	else if (IsKeyDown(DIK_UP))
 	{
-		if (simon->CheckCollisionWithStair(&listStairs) == true)
+		if (CheckSimonCollisionStair() == true)
 		{
 			Simon_Stair_Up();
 			return;
@@ -725,6 +727,13 @@ void Manager::Control()
 
 	else if (IsKeyPress(DIK_Z))
 	{
+		if (CheckSimonCollisionStair() && simon->isStandOnStair == true)
+		{
+			if (simon->nx > 0)
+				simon->SetState(SIMON_HIT_STAIR_UP);
+			else
+				simon->SetState(SIMON_HIT_STAIR_DOWN);
+		}
 		if (simon->GetState() == SIMON_SIT)
 			simon->SetState(SIMON_SIT_ATTACK);
 		else if (simon->GetState() == SIMON_STAND_IDLE || simon->GetState() == SIMON_JUMP)
@@ -733,7 +742,7 @@ void Manager::Control()
 	}
 	else if (IsKeyDown(DIK_LEFT))
 	{
-		if(simon->CheckCollisionWithStair(&listStairs) == true && simon->isStandOnStair == true)
+		if(CheckSimonCollisionStair() == true && simon->isStandOnStair == true)
 		{
 			if (simon->stairDirection == 1) // cầu thang trái dưới - phải trên
 				Simon_Stair_Down();
@@ -749,7 +758,7 @@ void Manager::Control()
 	}
 	else if (IsKeyDown(DIK_RIGHT))
 	{
-		if (simon->CheckCollisionWithStair(&listStairs) == true && simon->isStandOnStair == true)
+		if (CheckSimonCollisionStair() == true && simon->isStandOnStair == true)
 		{
 			if (simon->stairDirection == 1) // cầu thang trái dưới - phải trên
 				Simon_Stair_Up();
@@ -766,7 +775,7 @@ void Manager::Control()
 
 	else if (IsKeyDown(DIK_DOWN))
 	{
-		if (simon->CheckCollisionWithStair(&listStairs) == true)
+		if (CheckSimonCollisionStair() == true)
 		{
 			Simon_Stair_Down();
 			return;
@@ -777,7 +786,7 @@ void Manager::Control()
 	}
 	else
 	{
-		if (simon->CheckCollisionWithStair(&listStairs) == true)
+		if (CheckSimonCollisionStair())
 		{
 			if (Simon_Stair_Stand() == true)
 				return;
@@ -831,6 +840,7 @@ void Manager::Simon_Stair_Down()
 
 		simon->SetState(SIMON_WALK);
 		simon->vy = 0;
+
 		simon->AutoWalk(simon_goto_x - simon_x, SIMON_STAIR_DOWN, -stairDirection);
 		simon->isStandOnStair = true;
 
@@ -869,8 +879,10 @@ void Manager::Simon_Stair_Up()
 		float simon_goto_x = simon->goToStair.x;
 		float simon_x = simon->x;
 
-		if (stairDirection == 1) simon_goto_x -= 31.0f;
-		else simon_goto_x += 5.0f;
+		if (stairDirection == 1)
+			simon_goto_x -= 35.0f;
+		else 
+			simon_goto_x += 9.0f;
 
 		if (simon_goto_x < simon_x) simon->setNx(-1);
 		else if (simon_goto_x > simon_x)  simon->setNx(1);
@@ -895,21 +907,20 @@ void Manager::Simon_Stair_Up()
 bool Manager::Simon_Stair_Stand()
 {
 	if (simon->GetState() == SIMON_STAIR_UP || simon->GetState() == SIMON_STAIR_DOWN ||
-		simon->GetState() == SIMON_HIT_STAIR_UP || simon->GetState() == SIMON_HIT_STAIR_DOWN)
+		simon->GetState() == SIMON_HIT_STAIR_UP || simon->GetState() == SIMON_HIT_STAIR_DOWN ||
+		simon->GetState() == SIMON_STAND_STAIR_UP || simon->GetState() == SIMON_STAND_STAIR_DOWN)
 	{
 		if (simon->GetState() == SIMON_HIT_STAIR_UP)
 		{
-			simon->SetState(SIMON_STAIR_UP);
+			simon->SetState(SIMON_STAND_STAIR_UP);
 		}
 		else if (simon->GetState() == SIMON_HIT_STAIR_DOWN)
 		{
-			simon->SetState(SIMON_STAIR_DOWN);
+			simon->SetState(SIMON_STAND_STAIR_DOWN);
 		}
 
 		simon->StandOnStair();
-		simon->reset();
-
-		//simon->animations[STAIR_DOWN]->Reset();
+		
 
 		return true;
 	}
@@ -976,4 +987,9 @@ bool Manager::SimonWalkThroughDoor()
 		}
 	}
 	return false;
+}
+
+bool Manager::CheckSimonCollisionStair()
+{
+	return simon->CheckCollisionWithStair(&listStairs);
 }

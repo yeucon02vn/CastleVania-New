@@ -1,0 +1,70 @@
+﻿  Animations.cpp
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\sprites.h(3): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+  Bat.cpp
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\gameobject.h(3): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+  BreakWall.cpp
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\gameobject.h(3): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+  Bubbles.cpp
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\gameobject.h(3): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+  ChangeScene.cpp
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\gameobject.h(3): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+  CheckStair.cpp
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\gameobject.h(3): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+  Debug.cpp
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\debug.cpp(13): error C2664: 'void OutputDebugStringA(LPCSTR)': cannot convert argument 1 from 'wchar_t [4096]' to 'LPCSTR'
+  c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\debug.cpp(13): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+  Define.h
+  Door.cpp
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\gameobject.h(3): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+  EffectDead.cpp
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\gameobject.h(3): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+  Enemy.cpp
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\gameobject.h(3): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+  Fireball.cpp
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\gameobject.h(3): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+  Fishman.cpp
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\gameobject.h(3): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+  Game.cpp
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\game.h(4): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+  GameObject.cpp
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\gameobject.cpp(1): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+  Grid.cpp
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\gameobject.h(3): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+  Ground.cpp
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\gameobject.h(3): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+  Items.cpp
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\gameobject.h(3): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+  KeyEventHandler.cpp
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  Candle.cpp
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\gameobject.h(3): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+  Generating Code...
+  Compiling...
+  main.cpp
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\main.cpp(23): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+  Manager.cpp
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\game.h(4): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+  Panther.cpp
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\gameobject.h(3): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+  Simon.cpp
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\gameobject.h(3): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+  Sprites.cpp
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\sprites.h(3): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+  Stair.cpp
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\gameobject.h(3): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+  SubWeapon.cpp
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\gameobject.h(3): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+  Textures.cpp
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\textures.cpp(4): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+  TileMap.cpp
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\sprites.h(3): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+  UI.cpp
+  WallPieces.cpp
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\gameobject.h(3): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+  Water.cpp
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\gameobject.h(3): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+  Whip.cpp
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\gameobject.h(3): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+  Zombie.cpp
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\gameobject.h(3): fatal error C1083: Cannot open include file: 'd3dx9.h': No such file or directory
+  Generating Code...
