@@ -13,7 +13,8 @@ Manager::Manager(Game * game)
 		weapon->SetDestroy(true);
 		listWeapon.push_back(weapon);
 	}
-	tileMap = new TileMap();
+	tileMap = new TileMap(FRAME_TILE_MAP, FRAME_TILE_MAP);
+	tileMap->LoadResource();
 	Init(SCENE1);
 }
 
@@ -349,27 +350,20 @@ void Manager::Update(DWORD dt)
 	// update vị trí của quái vào cell mới
 	UpdateGrid();
 	fnChangeScene();
-	if (idScene == SCENE1)
-	{
-		if (simon->x >= SCREEN_WIDTH / 2 && simon->x < 1536 - 320 )
-		{
-			simon->getX(pos.x);
-			pos.x -= SCREEN_WIDTH / 2;
-			game->setCamPosition(pos.x, 0);
-		}
-	}
-	else
-	{
-		if (simon->x >= SCREEN_WIDTH / 2)
-		{
-			simon->getX(pos.x);
-			pos.x -= SCREEN_WIDTH / 2;
-			
-			game->setCamPosition(pos.x, 0);
-		}
-	}
+	
+	UpdateCam();
 
 	SetInactivationByPosition();
+}
+
+void Manager::UpdateCam()
+{
+		if (simon->x >= tileMap->getMinWidthMap() + SCREEN_WIDTH / 2 && simon->x < tileMap->getMaxWidthMap() - SCREEN_WIDTH / 2)
+		{
+			simon->getX(pos.x);
+			pos.x -= SCREEN_WIDTH / 2;
+			game->setCamPosition(pos.x, 0);
+		}
 }
 
 void Manager::Render()
@@ -483,14 +477,14 @@ void Manager::SetGameState(int gameState)
 		simon->SetState(SIMON_STAND_IDLE);
 		simon->SetPosition(0, 302);
 		game->setCamPosition(0, 0);
-		tileMap->InitMap(SCENE1, MAP_WIDTH_LV1, MAP_HEIGHT_LV1, FRAME_TILE_MAP, FRAME_TILE_MAP);
+		tileMap->LoadMap(SCENE1);
 		break;
 	case SCENE2:
 		simon->SetState(SIMON_STAND_IDLE);
 		simon->SetPosition(0, 335);
 		game->setCamPosition(0, 0);
 		simon->autoWalk = false;
-		tileMap->InitMap(SCENE2, MAP_WIDTH_LV2, MAP_HEIGHT_LV2, FRAME_TILE_MAP, FRAME_TILE_MAP);
+		tileMap->LoadMap(SCENE2);
 		break;
 	case SCENE3:
 		simon->SetState(SIMON_STAND_IDLE);
@@ -730,9 +724,15 @@ void Manager::Control()
 		if (CheckSimonCollisionStair() && simon->isStandOnStair == true)
 		{
 			if (simon->nx > 0)
-				simon->SetState(SIMON_HIT_STAIR_UP);
+				if(simon->stairDirection == 1)
+					simon->SetState(SIMON_HIT_STAIR_UP);
+				else
+					simon->SetState(SIMON_HIT_STAIR_DOWN);
 			else
-				simon->SetState(SIMON_HIT_STAIR_DOWN);
+				if (simon->stairDirection == 1)
+					simon->SetState(SIMON_HIT_STAIR_DOWN);
+				else
+					simon->SetState(SIMON_HIT_STAIR_UP);
 		}
 		if (simon->GetState() == SIMON_SIT)
 			simon->SetState(SIMON_SIT_ATTACK);
@@ -866,7 +866,7 @@ void Manager::Simon_Stair_Up()
 			int nx = simon->stairDirection;
 			simon->setNx(nx);
 			simon->SetState(SIMON_STAIR_UP);
-			simon->AutoWalk(14 * nx, SIMON_STAND_IDLE, nx);
+			simon->AutoWalk(16 * nx, SIMON_STAND_IDLE, nx);
 		}
 
 		return;
@@ -943,7 +943,7 @@ bool Manager::SimonWalkThroughDoor()
 
 	if (isMovingCamera1 == true)
 	{
-		if (countDxCamera < 224)			// Di chuyển camera một đoạn 224
+		if (countDxCamera < 240)			// Di chuyển camera một đoạn 224
 		{
 			countDxCamera += 2;
 
@@ -968,7 +968,7 @@ bool Manager::SimonWalkThroughDoor()
 			{
 				isMovingCamera2 = true;
 
-				if (countDxCamera < 480)	// Di chuyển camera thêm một đoạn -> 480
+				if (countDxCamera < 640)	// Di chuyển camera thêm một đoạn -> 480
 				{
 					countDxCamera += 2;
 
@@ -981,6 +981,7 @@ bool Manager::SimonWalkThroughDoor()
 					isMovingCamera1 = false;
 					isMovingCamera2 = false;
 					isSetSimonAutoWalk = false;
+					tileMap->LoadMap(SCENE2_3);
 					countDxCamera = 0;
 				}
 			}

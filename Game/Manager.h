@@ -49,7 +49,6 @@ class Manager {
 	bool isMovingCamera1 = false;
 	bool isMovingCamera2 = false;
 	int countDxCamera = 0;
-	bool isScene2_3 = false;
 public:
 	Manager(Game * game);
 	~Manager();
@@ -75,4 +74,5 @@ public:
 	bool Simon_Stair_Stand();
 	bool SimonWalkThroughDoor(); 
 	bool CheckSimonCollisionStair();
+	void UpdateCam();
 };

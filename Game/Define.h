@@ -23,7 +23,7 @@
 
 #define	ID_TEX_LEVEL_ONE		1
 #define	ID_TEX_LEVEL_TWO		2
-
+#define	ID_TEX_LEVEL_THREE		3
 #define ID_TEX 101
 
 
@@ -162,7 +162,9 @@
 
 #define SCENE1	1
 #define SCENE2	2
-#define SCENE3	3
+#define SCENE2_3 3
+#define SCENE2_BOSS 4
+#define SCENE3	5
 
 #define ANI_BIG_CANDLE		0
 #define ANI_SMALL_CANDLE	1
@@ -177,6 +179,7 @@
 #define MAP_HEIGHT_LV1	(int)384
 #define MAP_WIDTH_LV2	(int)5632
 #define MAP_HEIGHT_LV2	(int)352
+#define MAX_WIDTH_SCENE2 (int)2424
 #define FRAME_TILE_MAP (int)32
 
 #define CANDLE 0
@@ -218,7 +221,7 @@
 #define BAT_BBOX_WIDTH 10
 #define BAT_BBOX_HEIGHT 10
 
-#define BAT_ACTIVE_BBOX_WIDTH 250
+#define BAT_ACTIVE_BBOX_WIDTH 200
 #define BAT_ACTIVE_BBOX_HEIGHT 200
 
 #define PANTHER_ACTIVE 0

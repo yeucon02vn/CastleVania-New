@@ -74,8 +74,8 @@
     <IncludePath>C:\Users\Administrator\Desktop\CastleVania\CastleVania\CastleVania-New\Game\Library\Inc;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\Users\Administrator\Desktop\CastleVania\CastleVania\CastleVania-New\Game\Library\Inc;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Administrator\Desktop\CastleVania\CastleVania\CastleVania-New\Game\Library\Lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>E:\CastleVania\CastleVania\CastleVania-New\Game\Library\Inc;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\CastleVania\CastleVania\CastleVania-New\Game\Library\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

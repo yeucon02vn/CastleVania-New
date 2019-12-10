@@ -1,4 +1,5 @@
-﻿  Manager.cpp
+﻿  Define.h
+  Manager.cpp
   c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\library\inc\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
 c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\define.h(6): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
   c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\library\inc\dinput.h(42): note: see previous definition of 'DIRECTINPUT_VERSION'
@@ -14,4 +15,19 @@ c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\mana
 c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\manager.cpp(420): warning C4018: '<': signed/unsigned mismatch
 c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\manager.cpp(652): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\manager.cpp(869): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Simon.cpp
+  c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\library\inc\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\define.h(6): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
+  c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\library\inc\dinput.h(42): note: see previous definition of 'DIRECTINPUT_VERSION'
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\simon.cpp(171): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\simon.cpp(231): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\simon.cpp(232): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\simon.cpp(655): warning C4244: 'initializing': conversion from 'DWORD' to 'float', possible loss of data
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\simon.cpp(679): warning C4244: 'initializing': conversion from 'DWORD' to 'float', possible loss of data
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\simon.cpp(705): warning C4244: 'initializing': conversion from 'DWORD' to 'float', possible loss of data
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\simon.cpp(731): warning C4244: 'initializing': conversion from 'DWORD' to 'float', possible loss of data
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\simon.cpp(756): warning C4244: 'initializing': conversion from 'DWORD' to 'float', possible loss of data
+  Generating Code...
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\simon.cpp(365): warning C4715: 'Simon::CheckCollisionWithItem': not all control paths return a value
+c:\users\administrator\desktop\castlevania\castlevania\castlevania-new\game\simon.cpp(592): warning C4715: 'Simon::CheckCollisionWithStair': not all control paths return a value
   Game.vcxproj -> C:\Users\Administrator\Desktop\CastleVania\CastleVania\CastleVania-New\Debug\Game.exe
