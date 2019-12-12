@@ -5,6 +5,11 @@ TileMap::TileMap(int framewidht, int frameheight)
 	FrameHeight = framewidht;
 	FrameWidth = frameheight;
 	fit = 130;
+	RowMatrix = 0;
+	ScreenRow = 0;
+	ColumnMatrix = 0;
+	maxWidthRenderCam = 0;
+
 }
 
 TileMap::~TileMap()
@@ -46,7 +51,7 @@ void TileMap::LoadResource()
 
 	textures->Add(ID_TEX_LEVEL_THREE, L"Scenes\\Scene3.png", D3DCOLOR_XRGB(255, 255, 255));
 	LPDIRECT3DTEXTURE9 state3 = textures->Get(ID_TEX_LEVEL_THREE);
-	for (int i = 0; i < 27; i++)
+	for (int i = 0; i < 28; i++)
 		sprites->Add("TileMap3_" + to_string(i), i * 32, 0, 32 + i * 32, 32, state3);
 }
 
@@ -55,8 +60,6 @@ void TileMap::LoadMap(int idscene)
 {
 	minWidthRenderCam = 0;
 	bool isChangeScene = true;
-	if (idScene == SCENE2 || idScene == SCENE2_3 || idScene == SCENE2_BOSS)
-		isChangeScene = false;
 	idScene = idscene;
 	switch (idscene)
 	{
@@ -75,10 +78,10 @@ void TileMap::LoadMap(int idscene)
 	}
 	case SCENE2:
 	{
-		maxWidthRenderCam = 3072;
-
+		
 		ScreenRow = MAP_HEIGHT_LV2 / FrameHeight;
 		ColumnMatrix = MAP_WIDTH_LV2 / FrameWidth;
+		maxWidthRenderCam = 3072;
 
 		ReadMap(L"Scenes\\Scene2.txt");
 		animation = new Animation(0);
@@ -86,41 +89,48 @@ void TileMap::LoadMap(int idscene)
 			animation->Add("TileMap2_" + to_string(i));
 		break;
 	}
+	case SCENE2_1:
+	case SCENE2_2:
 	case SCENE2_3:
 	{
 		minWidthRenderCam = 3056;
 		maxWidthRenderCam = 4096;
-		if (isChangeScene)
-		{
-			ScreenRow = MAP_HEIGHT_LV2 / FrameHeight;
-			ColumnMatrix = MAP_WIDTH_LV2 / FrameWidth;
+		//if (isChangeScene)
+		//{
+		//	ScreenRow = MAP_HEIGHT_LV2 / FrameHeight;
+		//	ColumnMatrix = MAP_WIDTH_LV2 / FrameWidth;
 
-			ReadMap(L"Scenes\\Scene2.txt");
-			animation = new Animation(0);
-			for (int i = 0; i < 102; i++)
-				animation->Add("TileMap2_" + to_string(i));
-		}
+		//	ReadMap(L"Scenes\\Scene2.txt");
+		//	animation = new Animation(0);
+		//	for (int i = 0; i < 102; i++)
+		//		animation->Add("TileMap2_" + to_string(i));
+		//}
 		break;
 	}
 	case SCENE2_BOSS:
 	{
-		if (isChangeScene)
-		{
-			ScreenRow = MAP_HEIGHT_LV2 / FrameHeight;
-			ColumnMatrix = MAP_WIDTH_LV2 / FrameWidth;
+		//if (isChangeScene)
+		//{
+		//	ScreenRow = MAP_HEIGHT_LV2 / FrameHeight;
+		//	ColumnMatrix = MAP_WIDTH_LV2 / FrameWidth;
 
-			ReadMap(L"Scenes\\Scene2.txt");
-			animation = new Animation(0);
-			for (int i = 0; i < 102; i++)
-				animation->Add("TileMap2_" + to_string(i));
-		}
+		//	ReadMap(L"Scenes\\Scene2.txt");
+		//	animation = new Animation(0);
+		//	for (int i = 0; i < 102; i++)
+		//		animation->Add("TileMap2_" + to_string(i));
+		//}
 		break;
 	}
-	case SCENE3:
+	case SCENE3_1:
+	case SCENE3_2:
 	{
+		ScreenRow = MAP_HEIGHT_LV3 / FrameHeight;
+		ColumnMatrix = (MAP_WIDTH_LV3 + 64) / FrameWidth;
+		maxWidthRenderCam = MAP_WIDTH_LV3;
+
 		ReadMap(L"Scenes\\Scene3.txt");
 		animation = new Animation(0);
-		for (int i = 0; i < 27; i++)
+		for (int i = 0; i < 28; i++)
 			animation->Add("TileMap3_" + to_string(i));
 		break;
 	}

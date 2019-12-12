@@ -162,9 +162,16 @@
 
 #define SCENE1	1
 #define SCENE2	2
-#define SCENE2_3 3
-#define SCENE2_BOSS 4
-#define SCENE3	5
+#define SCENE2_1 3
+#define SCENE2_2 4
+#define SCENE2_3 5
+#define SCENE2_BOSS 6
+#define SCENE3_1	7
+#define SCENE3_2	8
+
+#define GAMESTATE1 1
+#define GAMESTATE2 2
+#define GAMESTATE3 3
 
 #define ANI_BIG_CANDLE		0
 #define ANI_SMALL_CANDLE	1
@@ -180,6 +187,8 @@
 #define MAP_WIDTH_LV2	(int)5632
 #define MAP_HEIGHT_LV2	(int)352
 #define MAX_WIDTH_SCENE2 (int)2424
+#define MAP_WIDTH_LV3	(int)1024
+#define MAP_HEIGHT_LV3	(int)352
 #define FRAME_TILE_MAP (int)32
 
 #define CANDLE 0

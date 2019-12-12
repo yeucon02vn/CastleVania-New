@@ -15,7 +15,7 @@ Manager::Manager(Game * game)
 	}
 	tileMap = new TileMap(FRAME_TILE_MAP, FRAME_TILE_MAP);
 	tileMap->LoadResource();
-	Init(SCENE1);
+	Init(GAMESTATE3);
 }
 
 Manager::~Manager()
@@ -27,22 +27,22 @@ void Manager::Init(int idScene)
 	this->idScene = idScene;
 	switch (idScene)
 	{
-	case SCENE1:
+	case GAMESTATE1:
 		grid = new Grid(1536, 480);
 		LoadObjectsFromFile(L"Scenes\\Scene1_objects.txt");
-		SetGameState(SCENE1);
+		SetGameState(GAMESTATE1);
 		break;
-	case SCENE2:
+	case GAMESTATE2:
 		grid = new Grid(5632, 480);
 		LoadObjectsFromFile(L"Scenes\\Scene2_objects.txt");
 		SetGameState(SCENE2);
 		break;
-	//case SCENE3:
-	//	grid = new Grid(1024, 480);
-	//	LoadObjectsFromFile(L"Scenes\\Scene3_objects.txt");
-	//	//simon->SetState(STAIR_DOWN);
-	//	SetGameState(SCENE3);
-	//	break;
+	case GAMESTATE3:
+		grid = new Grid(1024, 480);
+		LoadObjectsFromFile(L"Scenes\\Scene3_objects.txt");
+		//simon->SetState(SIMON_STAIR_DOWN);
+		SetGameState(SCENE3_1);
+		break;
 	default:
 		break;
 	}
@@ -137,9 +137,17 @@ void Manager::LoadObjectsFromFile(LPCWSTR FilePath)
 			unit = new Unit(grid, fishman, pos_x, pos_y);
 			break;
 		}
+		case CHANGE_SCENE_OBJECT:
+		{
+			ChangeScene * changeScene = new ChangeScene();
+			changeScene->SetPosition(pos_x, pos_y);
+			changeScene->SetIdScene(state);
+			unit = new Unit(grid, changeScene, pos_x, pos_y);
+			break;
+		}
 		case WATER:
 		{
-			Water * water = new Water();
+			water = new Water();
 			water->SetPosition(pos_x, pos_y);
 			unit = new Unit(grid, water, pos_x, pos_y);
 			break;
@@ -153,23 +161,7 @@ void Manager::LoadObjectsFromFile(LPCWSTR FilePath)
 			unit = new Unit(grid, breakwall, pos_x, pos_y);
 			break;
 		}
-		case CHANGE_SCENE_OBJECT:
-		{
-			ChangeScene * changeScene = new ChangeScene();
-			changeScene->SetPosition(pos_x, pos_y);
-			changeScene->SetIdScene(state);
-			unit = new Unit(grid, changeScene, pos_x, pos_y);
-			break;
-		}
-		/*case CHECKSTAIR:
-		{
-			CheckStair * checkstair = new CheckStair();
-			checkstair->SetPosition(pos_x, pos_y);
-			checkstair->SetState(state);
-			unit = new Unit(grid, checkstair, pos_x, pos_y);
-			break;
-		}*/
-	
+
 		default:
 			break;
 		}
@@ -317,7 +309,25 @@ void Manager::Update(DWORD dt)
 		GetColliableObjects(object, listCoObjects);
 
 		if (listGridObjects[i]->isDestroy == false)
+		{
 			listGridObjects[i]->Update(dt, &listCoObjects);
+			if (dynamic_cast<FishMan*>(listGridObjects[i]))
+			{
+				FishMan * fishman = dynamic_cast<FishMan*>(listGridObjects[i]);
+
+				if (fishman->CanHit() == true)
+				{
+					fishman->SetState(FISHMAN_HIT);
+
+					// Đặt hướng quay mặt của Fishman sau khi bắn (quay về phía simon)
+					int new_nx;
+					if (fishman->x < simon->x) new_nx = 1;
+					else new_nx = -1;
+
+					fishman->Hit(grid, new_nx);
+				}
+			}
+		}
 		else
 		{
 			DeleteObject(listGridObjects[i], i);
@@ -349,11 +359,14 @@ void Manager::Update(DWORD dt)
 	}
 	// update vị trí của quái vào cell mới
 	UpdateGrid();
-	fnChangeScene();
+
+	
 	
 	UpdateCam();
 
 	SetInactivationByPosition();
+
+	fnChangeScene();
 }
 
 void Manager::UpdateCam()
@@ -404,8 +417,7 @@ void Manager::Render()
 	{
 		listDoors[i]->Render();
 	}
-
-	listWeapon[0]->Render();
+	//listWeapon[0]->Render();
 }
 
 void Manager::UpdateGrid()
@@ -486,12 +498,50 @@ void Manager::SetGameState(int gameState)
 		simon->autoWalk = false;
 		tileMap->LoadMap(SCENE2);
 		break;
-	case SCENE3:
+	case SCENE2_1:
 		simon->SetState(SIMON_STAND_IDLE);
 		simon->SetPosition(3115, 143);
 		game->setCamPosition(3056, 0);
+		simon->autoWalk = false;
+		tileMap->LoadMap(SCENE2_1);
 		break;
-
+	case SCENE2_2:
+		simon->SetState(SIMON_STAIR_UP);
+		simon->SetPosition(3172, 420);
+		game->setCamPosition(3056, 0);
+		simon->autoWalk = false;
+		tileMap->LoadMap(SCENE2_2);
+		break;
+	case SCENE2_3:
+		simon->SetState(SIMON_STAIR_UP);
+		simon->SetPosition(3812, 420);
+		game->setCamPosition(3450, 0);
+		simon->autoWalk = false;
+		tileMap->LoadMap(SCENE2_3);
+		break;
+	case SCENE2_BOSS:
+		simon->SetState(SIMON_STAND_IDLE);
+		simon->SetPosition(4139, 143);
+		game->setCamPosition(4079, 0);
+		simon->autoWalk = false;
+		tileMap->LoadMap(SCENE2_BOSS);
+		break;
+	case SCENE3_1:
+		simon->SetState(SIMON_STAIR_DOWN);
+		simon->SetPosition(100, 98);
+		simon->setNx(1);
+		game->setCamPosition(0, 0);
+		simon->autoWalk = false;
+		tileMap->LoadMap(SCENE3_1);
+		break;
+	case SCENE3_2:
+		simon->SetState(SIMON_STAIR_DOWN);
+		simon->SetPosition(737, 93);
+		simon->setNx(1);
+		game->setCamPosition(383, 0);
+		simon->autoWalk = false;
+		tileMap->LoadMap(SCENE3_2);
+		break;
 	default:
 		break;
 	}
@@ -808,8 +858,27 @@ void Manager::Control()
 
 void Manager::fnChangeScene()
 {
-	 if (idScene == SCENE1 && simon->changeScene == SCENE2)
+	float x, y;
+	simon->GetPosition(x, y);
+
+	if (idScene == GAMESTATE1 && simon->changeScene == GAMESTATE2)
+		Init(GAMESTATE2);
+	else if (idScene == GAMESTATE2 && simon->changeScene == GAMESTATE3)
+	{
+		Init(GAMESTATE3);
+		if (x < 3500)
+			SetGameState(SCENE3_1);
+		else
+			SetGameState(SCENE3_2);
+	}
+	else if (idScene == GAMESTATE3 && simon->changeScene == GAMESTATE2)
+	{
 		Init(SCENE2);
+		if (x < 300)
+			SetGameState(SCENE2_2);
+		else
+			SetGameState(SCENE2_3);
+	}
 }
 
 void Manager::Simon_Stair_Down()
@@ -981,7 +1050,7 @@ bool Manager::SimonWalkThroughDoor()
 					isMovingCamera1 = false;
 					isMovingCamera2 = false;
 					isSetSimonAutoWalk = false;
-					tileMap->LoadMap(SCENE2_3);
+					tileMap->LoadMap(SCENE2_1);
 					countDxCamera = 0;
 				}
 			}

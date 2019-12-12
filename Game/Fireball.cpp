@@ -16,7 +16,7 @@ void FireBall::Update(DWORD dt, vector<LPGAMEOBJECT>* coObject)
 
 void FireBall::Render()
 {
-	animations[state]->Render(1, nx, x, y);
+	animations[state]->Render(nx, x, y);
 }
 
 void FireBall::SetState(int state)
