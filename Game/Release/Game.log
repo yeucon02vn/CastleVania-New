@@ -2,16 +2,16 @@
   e:\castlevania\castlevania\castlevania-new\game\library\inc\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
 e:\castlevania\castlevania\castlevania-new\game\define.h(6): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
   e:\castlevania\castlevania\castlevania-new\game\library\inc\dinput.h(42): note: see previous definition of 'DIRECTINPUT_VERSION'
-e:\castlevania\castlevania\castlevania-new\game\manager.cpp(305): warning C4018: '<': signed/unsigned mismatch
-e:\castlevania\castlevania\castlevania-new\game\manager.cpp(337): warning C4018: '<': signed/unsigned mismatch
-e:\castlevania\castlevania\castlevania-new\game\manager.cpp(341): warning C4018: '<': signed/unsigned mismatch
-e:\castlevania\castlevania\castlevania-new\game\manager.cpp(384): warning C4018: '<': signed/unsigned mismatch
-e:\castlevania\castlevania\castlevania-new\game\manager.cpp(388): warning C4018: '<': signed/unsigned mismatch
-e:\castlevania\castlevania\castlevania-new\game\manager.cpp(392): warning C4018: '<': signed/unsigned mismatch
-e:\castlevania\castlevania\castlevania-new\game\manager.cpp(399): warning C4018: '<': signed/unsigned mismatch
-e:\castlevania\castlevania\castlevania-new\game\manager.cpp(408): warning C4018: '<': signed/unsigned mismatch
-e:\castlevania\castlevania\castlevania-new\game\manager.cpp(413): warning C4018: '<': signed/unsigned mismatch
-e:\castlevania\castlevania\castlevania-new\game\manager.cpp(424): warning C4018: '<': signed/unsigned mismatch
-e:\castlevania\castlevania\castlevania-new\game\manager.cpp(683): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-e:\castlevania\castlevania\castlevania-new\game\manager.cpp(922): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+e:\castlevania\castlevania\castlevania-new\game\manager.cpp(322): warning C4018: '<': signed/unsigned mismatch
+e:\castlevania\castlevania\castlevania-new\game\manager.cpp(359): warning C4018: '<': signed/unsigned mismatch
+e:\castlevania\castlevania\castlevania-new\game\manager.cpp(363): warning C4018: '<': signed/unsigned mismatch
+e:\castlevania\castlevania\castlevania-new\game\manager.cpp(418): warning C4018: '<': signed/unsigned mismatch
+e:\castlevania\castlevania\castlevania-new\game\manager.cpp(422): warning C4018: '<': signed/unsigned mismatch
+e:\castlevania\castlevania\castlevania-new\game\manager.cpp(426): warning C4018: '<': signed/unsigned mismatch
+e:\castlevania\castlevania\castlevania-new\game\manager.cpp(433): warning C4018: '<': signed/unsigned mismatch
+e:\castlevania\castlevania\castlevania-new\game\manager.cpp(442): warning C4018: '<': signed/unsigned mismatch
+e:\castlevania\castlevania\castlevania-new\game\manager.cpp(447): warning C4018: '<': signed/unsigned mismatch
+e:\castlevania\castlevania\castlevania-new\game\manager.cpp(457): warning C4018: '<': signed/unsigned mismatch
+e:\castlevania\castlevania\castlevania-new\game\manager.cpp(727): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+e:\castlevania\castlevania\castlevania-new\game\manager.cpp(969): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Game.vcxproj -> E:\CastleVania\CastleVania\CastleVania-New\Release\Game.exe

@@ -11,6 +11,8 @@ Items::Items() : GameObject()
 	AddAnimation("item_big_heart_ani");
 	AddAnimation("item_whip_ani");
 	AddAnimation("item_knife_ani");
+
+
 }
 
 void Items::Render()
@@ -43,15 +45,16 @@ void Items::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 	}
 	
 
-	GameObject::Update(dt);
-	//if (state == ITEM_SMALL_HEART && vy != 0)
+	
+	//if (state == ITEM_SMALL_HEART && vx_Itemfalling != 0)
 	//{
+	//	OutputDebugStringW(L"a");
 	//	vx += vx_Itemfalling;
 	//	if (vx >= ITEM_LIMITED_X || vx <= -ITEM_LIMITED_X)
 	//		vx_Itemfalling *= -1; // đổi chiều
 	//}
 
-
+	GameObject::Update(dt);
 	// Check collision between item and ground (falling on ground)
 	vector<LPCOLLISIONEVENT> coEvents;
 	vector<LPCOLLISIONEVENT> coEventsResult;
@@ -88,9 +91,10 @@ void Items::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 
 				if (ny != 0)
 				{
-					vx_Itemfalling = 0;
+					
 					vy = 0;
 				}
+				vx_Itemfalling = 0;
 			}
 			else
 			{

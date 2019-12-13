@@ -20,8 +20,9 @@
 #include "Fishman.h"
 #include "Water.h"
 #include "Fireball.h"
-#include "CheckStair.h"
-
+#include "Boss.h"
+#include "MapObjectManager.h"
+#include "UI.h"
 using namespace std;
 class Manager {
 	int idScene;
@@ -41,10 +42,13 @@ class Manager {
 	SubWeapon * weapon;
 	vector<SubWeapon*> listWeapon;
 	TileMap * tileMap;
+	MapsObjectsManager * mapsObjects;
 	Water * water;
+	Boss * boss;
+	UI * ui;
 	bool canControl;
 
-
+	bool isBossFighting = false;
 	bool isSetSimonAutoWalk = false;	
 	bool isMovingCamera1 = false;
 	bool isMovingCamera2 = false;
@@ -53,7 +57,7 @@ public:
 	Manager(Game * game);
 	~Manager();
 	void Init(int idScene);
-	void LoadObjectsFromFile(LPCWSTR FilePath);
+	void LoadObjects(int id_scene);
 	void GetObjectFromGrid();
 	int GetIdScene() { return this->idScene; }
 	Simon * GetSimon() { return this->simon; }

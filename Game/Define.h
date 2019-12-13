@@ -14,7 +14,7 @@
 
 #define FPS					200
 
-#define GAME_FONT			L"Resource\\font\\prstart.ttf"
+#define GAME_FONT			L"Font\\prstart.ttf"
 #define MAX_TIME_PER_FRAME		(DWORD)1000 / FPS
 
 
@@ -26,10 +26,10 @@
 #define	ID_TEX_LEVEL_THREE		3
 #define ID_TEX 101
 
+#define PLAY_TIME 300
 
 
-
-
+#define GRAVITY_LOWER				0.001f
 #define GRAVITY						0.0015f
 #define WALLPIECES_GRAVITY			0.0005f
 #define PANTHER_GRAVITY			0.001f
@@ -44,12 +44,13 @@
 #define FIREBALL_SPEED 0.13f
 #define FISHMAN_WALKING_SPEED_X 0.1f
 #define FISHMAN_JUMP_SPEED_Y 0.7f
+#define SIMON_SPEED_Y_LOWER_ZONE    0.15f
 #define SIMON_WALKING_SPEED			0.13f 
 #define SIMON_WALKING_LOWER_SPEED	0.05f 
 #define SIMON_JUMP_SPEED_Y			0.5f
 #define SIMON_DIE_DEFLECT_SPEED		0.5f
 #define SIMON_STAIR_SPEED			0.079f
-#define SIMON_DEFLECT_SPEED_Y		0.4f
+#define SIMON_DEFLECT_SPEED_Y		0.3f
 #define SIMON_DEFLECT_SPEED_X		0.13f
 #define ITEM_FALLING_SPEED_Y		0.1f
 #define ITEM_FALLING_SPEED_X		0.01f
@@ -60,7 +61,7 @@
 
 
 
-#define WEAPON_KNIFE	0
+#define WEAPON_KNIFE	3
 
 #define GROUND_WIDTH				32
 #define GROUND_HEIGHT				32
@@ -148,6 +149,9 @@
 
 
 #define ENEMY_DELAY_RESPAWN_TIME	450
+#define HURT_TIME	200
+#define WAIT_TIME	1000
+#define CHASE_TIME	300
 #define SIMON_EFFECT_TIME			450
 #define SIMON_ATTACK_TIME			350
 #define SIMON_UNTOUCHABLE_TIME		2500
@@ -190,7 +194,8 @@
 #define MAP_WIDTH_LV3	(int)1024
 #define MAP_HEIGHT_LV3	(int)352
 #define FRAME_TILE_MAP (int)32
-
+#define MAP_CHECK_2	(int)3500
+#define MAP_CHECK_3	(int)300
 #define CANDLE 0
 #define GROUND 1
 #define STAIR 2
@@ -202,7 +207,7 @@
 #define CHANGE_SCENE_OBJECT 8
 #define WATER 9
 #define BREAKWALL 10
-#define CHECKSTAIR 11
+#define BOSS 11
 
 #define DOOR1 0
 #define DOOR2_IDLE 1
@@ -253,8 +258,8 @@
 
 #define FISHMAN_ACTIVE 0
 #define FISHMAN_IDLE 1
-#define FISHMAN_HIT 2
-#define FISHMAN_JUMP 3
+#define FISHMAN_HIT 3
+#define FISHMAN_JUMP 2
 
 #define FISHMAN_BBOX_WIDTH	 10
 #define FISHMAN_BBOX_HEIGHT	60
@@ -263,3 +268,19 @@
 
 #define ACTIVE 0
 #define INACTIVE 1
+
+
+#define BOSS_SLEEP 1
+#define BOSS_HURTED 2
+#define BOSS_ACTIVE 0
+
+#define BOSS_BBOX_WIDTH 70
+#define BOSS_BBOX_HEIGHT 46
+
+#define BOSS_ACTIVE_BBOX_WIDTH 50
+#define BOSS_ACTIVE_BBOX_HEIGHT 400
+
+#define BLACKBROAD 4
+#define SIMON_HP 0
+#define NO_HP	1
+#define BOSS_HP 2

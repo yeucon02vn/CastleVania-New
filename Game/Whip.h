@@ -10,6 +10,7 @@
 #include "Zombie.h"
 #include "FishMan.h"
 #include "Panther.h"
+#include "Boss.h"
 class Whip : public GameObject
 {
 	bool isMaxLevel = false;

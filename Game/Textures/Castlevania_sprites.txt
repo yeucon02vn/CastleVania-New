@@ -141,4 +141,13 @@ fishman_walk_2	787	634	819	698
 fishman_jump	787	634	819	698
 fireball	580	566	594	578
 bubbles	981	704	995	732
+boss_idle	722	587	818	633
+boss_fly_1	818	587	914	633
+boss_fly_2	914	587	1010	633
+blackbroad	819	842	944	901
+simon_hp	822	904	832	924
+boss_hp	836	904	846	924
+no_hp	849	904	859	924
+
+
 

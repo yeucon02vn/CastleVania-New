@@ -128,6 +128,7 @@
   <ItemGroup>
     <ClCompile Include="Animations.cpp" />
     <ClCompile Include="Bat.cpp" />
+    <ClCompile Include="Boss.cpp" />
     <ClCompile Include="BreakWall.cpp" />
     <ClCompile Include="Bubbles.cpp" />
     <ClCompile Include="ChangeScene.cpp" />
@@ -148,6 +149,7 @@
     <ClCompile Include="Candle.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Manager.cpp" />
+    <ClCompile Include="MapObjectManager.cpp" />
     <ClCompile Include="Panther.cpp" />
     <ClCompile Include="Simon.cpp" />
     <ClCompile Include="Sprites.cpp" />
@@ -164,6 +166,7 @@
   <ItemGroup>
     <ClInclude Include="Animations.h" />
     <ClInclude Include="Bat.h" />
+    <ClInclude Include="Boss.h" />
     <ClInclude Include="BreakWall.h" />
     <ClInclude Include="Bubbles.h" />
     <ClInclude Include="ChangeScene.h" />
@@ -256,6 +259,7 @@
     <ClInclude Include="Library\Inc\xma2defs.h" />
     <ClInclude Include="Library\Inc\xnamath.h" />
     <ClInclude Include="Manager.h" />
+    <ClInclude Include="MapObjectManager.h" />
     <ClInclude Include="Panther.h" />
     <ClInclude Include="Simon.h" />
     <ClInclude Include="Sprites.h" />

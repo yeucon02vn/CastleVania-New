@@ -6,6 +6,7 @@
 #include "Fireball.h"
 #include "Bat.h"
 #include "BreakWall.h"
+#include "Boss.h"
 class SubWeapon : public GameObject
 {
 

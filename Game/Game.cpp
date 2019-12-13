@@ -11,19 +11,17 @@ void Game::Init(HWND hWnd)
 	this->hWnd = hWnd;
 
 	D3DPRESENT_PARAMETERS d3dpp;
-
 	ZeroMemory(&d3dpp, sizeof(d3dpp));
+
+	RECT rect;
+	GetClientRect(hWnd, &rect);
 
 	d3dpp.Windowed = TRUE;
 	d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
 	d3dpp.BackBufferFormat = D3DFMT_X8R8G8B8;
 	d3dpp.BackBufferCount = 1;
-
-	RECT r;
-	GetClientRect(hWnd, &r);
-
-	d3dpp.BackBufferHeight = r.bottom + 1;
-	d3dpp.BackBufferWidth = r.right + 1;
+	d3dpp.BackBufferHeight = rect.bottom + 1;
+	d3dpp.BackBufferWidth = rect.right + 1;
 
 	d3d->CreateDevice(
 		D3DADAPTER_DEFAULT,
@@ -35,15 +33,30 @@ void Game::Init(HWND hWnd)
 
 	if (d3ddv == NULL)
 	{
-		OutputDebugString(L"[ERROR] CreateDevice failed\n");
+		DebugOut(L"[ERROR] CreateDevice failed\n");
 		return;
 	}
 
 	d3ddv->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &backBuffer);
 
+	// Initialize sprite helper from Direct3DX helper library
 	D3DXCreateSprite(d3ddv, &spriteHandler);
 
-	OutputDebugString(L"[INFO] InitGame done;\n");
+	// Font
+	AddFontResourceEx(GAME_FONT, FR_PRIVATE, NULL);
+
+	HRESULT hr = D3DXCreateFont(
+		GetDirect3DDevice(), 20, 0, FW_NORMAL, 1, false,
+		DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
+		ANTIALIASED_QUALITY, FF_DONTCARE, L"Press Start", &font);
+
+	if (hr != DI_OK)
+	{
+		DebugOut(L"[ERROR] Create font failed\n");
+		return;
+	}
+
+	DebugOut(L"[INFO] Init Game done\n");
 }
 
 

@@ -4,17 +4,17 @@
 #include <d3dx9.h>
 #include <dinput.h>
 #include "KeyEventHandler.h"
-
+#include "Define.h"
 class Game
 {
 	static Game * __instance;
 	HWND hWnd;									// Window handle
-
+	
 	LPDIRECT3D9 d3d = NULL;						// Direct3D handle
 	LPDIRECT3DDEVICE9 d3ddv = NULL;				// Direct3D device object
 	LPDIRECT3DSURFACE9 backBuffer = NULL;
 	LPD3DXSPRITE spriteHandler = NULL;			// Sprite helper library to help us draw 2D image on the screen 
-
+	ID3DXFont *font = NULL;
 
 
 	float camX, camY;
@@ -48,5 +48,6 @@ public:
 	static Game * GetInstance();
 	float getCamX();
 	float getCamY();
+	ID3DXFont* GetFont() { return font; }
 	~Game();
 };

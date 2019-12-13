@@ -75,4 +75,11 @@ fishman_walk_ani	fishman_walk_1	200	fishman_walk_2	200
 fishman_jump_ani	fishman_jump	100
 fishman_hit_ani	fishman_hit	1000
 fireball_ani	fireball	100
+boss_fly_ani	boss_fly_1	300	boss_fly_2	300
+boss_idle_ani	boss_idle	100
+boss_hurt_ani	boss_fly_2	300
 bubbles_ani	bubbles	100
+blackbroad_ani	blackbroad	300
+simon_hp_ani	simon_hp	300
+no_hp_ani	no_hp	300
+boss_hp_ani	boss_hp	300

@@ -28,13 +28,13 @@ CGameObject::GetBoundingBox
 #include "Textures.h"
 #include "KeyEventHandler.h"
 #include "Manager.h"
-
+#include "MapObjectManager.h"
 Game *game;
 Manager* scene;
 Textures * textures = Textures::GetInstance();
 Sprites * sprites = Sprites::GetInstance();
 Animations * animations = Animations::GetInstance();
-
+MapsObjectsManager * mapsObjects = MapsObjectsManager::GetInstance();
 
 void LoadSprites(int id, LPCWSTR tex, LPCWSTR sprite_data, LPCWSTR animation_data)
 {
@@ -98,6 +98,9 @@ void LoadResources()
 {
 	textures->Add(ID_TEX_BBOX, L"Textures\\BBox.png", D3DCOLOR_XRGB(255, 0, 255));
 	LoadSprites(ID_TEX, L"Textures\\Castlevania.png", L"Textures\\Castlevania_sprites.txt", L"Textures\\Castlevania_animations.txt");
+	mapsObjects->Add(GAMESTATE1, L"Scenes\\Scene1_objects.txt");
+	mapsObjects->Add(GAMESTATE2, L"Scenes\\Scene2_objects.txt");
+	mapsObjects->Add(GAMESTATE3, L"Scenes\\Scene3_objects.txt");
 }
 
 
