@@ -11,7 +11,10 @@ Items::Items() : GameObject()
 	AddAnimation("item_big_heart_ani");
 	AddAnimation("item_whip_ani");
 	AddAnimation("item_knife_ani");
-
+	AddAnimation("item_boomerang_ani");
+	AddAnimation("item_axe_ani");
+	AddAnimation("item_stop_watch_ani");
+	AddAnimation("item_holywater_ani");
 
 }
 
@@ -45,16 +48,10 @@ void Items::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 	}
 	
 
-	
-	//if (state == ITEM_SMALL_HEART && vx_Itemfalling != 0)
-	//{
-	//	OutputDebugStringW(L"a");
-	//	vx += vx_Itemfalling;
-	//	if (vx >= ITEM_LIMITED_X || vx <= -ITEM_LIMITED_X)
-	//		vx_Itemfalling *= -1; // đổi chiều
-	//}
+
 
 	GameObject::Update(dt);
+
 	// Check collision between item and ground (falling on ground)
 	vector<LPCOLLISIONEVENT> coEvents;
 	vector<LPCOLLISIONEVENT> coEventsResult;
@@ -94,7 +91,6 @@ void Items::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 					
 					vy = 0;
 				}
-				vx_Itemfalling = 0;
 			}
 			else
 			{
@@ -140,19 +136,48 @@ void Items::RandomItem()
 	{
 		SetState(ITEM_BIG_HEART);
 	}
-	else
+
+	/*else if (percent < 80)
 	{
-		RandomSubWeapon();
+		state = ITEM_ROAST;
 	}
+	else if (percent < 85)
+	{
+		state = ITEM_ANI_ROSASY;
+	}
+	else if (percent < 90)
+	{
+		state = ITEM_ANI_DOUBLE;
+	}
+	else if (percent < 95)
+	{
+		state = ITEM_ANI_TRIPLE;
+	}*/
 }
 
 void Items::RandomSubWeapon()
 {
-	//int percent = rand() % 100;
-	//if (percent < 40)
-	//{
-	SetState(ITEM_KNIFE);
-	//}
+	int percent = rand() % 100;
+	if (percent < 40)
+	{
+		SetState(ITEM_KNIFE);
+	}
+	else if (percent < 60)
+	{
+		SetState(ITEM_AXE);
+	}
+	else if (percent < 75)
+	{
+		SetState(ITEM_BOOMERANG);
+	}
+	else if (percent < 85)
+	{
+		SetState(ITEM_HOLY_WATER);
+	}
+	else
+	{
+		SetState(ITEM_STOP_WATCH);
+	}
 
 }
 
@@ -176,9 +201,24 @@ void Items::GetBoundingBox(float & left, float & top, float & right, float & bot
 		bottom = y + MORNING_STAR_BBOX_HEIGHT;
 		break;
 	case ITEM_KNIFE:
-		right = x + WEAPON_KNIFE_BBOX_WIDTH;
-		bottom = y + WEAPON_KNIFE_BBOX_HEIGHT;
+		right = x + KNIFE_BBOX_WIDTH;
+		bottom = y + KNIFE_BBOX_HEIGHT;
 		break;
+	case ITEM_BOOMERANG:
+		right = x + BOOMERANG_BBOX_WIDTH;
+		bottom = y + BOOMERANG_BBOX_HEIGHT;
+		break;
+	case ITEM_AXE:
+		right = x + AXE_BBOX_WIDTH;
+		bottom = y + AXE_BBOX_HEIGHT;
+		break;
+	case ITEM_STOP_WATCH:
+		right = x + STOP_WATCH_BBOX_WIDTH;
+		bottom = y + STOP_WATCH_BBOX_HEIGHT;
+		break;
+	case ITEM_HOLY_WATER:
+		right = x + HOLY_WATER_BBOX_WIDTH;
+		bottom = y + HOLY_WATER_BBOX_HEIGHT;
 	default:
 		break;
 	}
@@ -191,7 +231,6 @@ void Items::SetState(int state)
 	switch (state)
 	{
 	case ITEM_SMALL_HEART:
-		vx_Itemfalling = ITEM_FALLING_SPEED_X;
 		vx = 0;
 		vy = ITEM_FALLING_SPEED_Y;
 		break;

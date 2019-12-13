@@ -13,12 +13,9 @@ Manager::Manager(Game * game)
 	ui->SetDevice(game->GetDirect3DDevice());
 	ui->SetFont(game->GetFont());
 	canControl = true;
-	for (int i = 0; i < 3; i++)
-	{
-		weapon = new SubWeapon();
-		weapon->SetDestroy(true);
-		listWeapon.push_back(weapon);
-	}
+	
+	weapon = new SubWeapon();
+	weapon->SetDestroy(true);
 	tileMap = new TileMap(FRAME_TILE_MAP, FRAME_TILE_MAP);
 	tileMap->LoadResource();
 	Init(GAMESTATE2);
@@ -246,7 +243,9 @@ void Manager::GetColliableObjects(LPGAMEOBJECT curObj, vector<LPGAMEOBJECT>& coO
 
 		for (auto obj : listGridObjects)
 		{
-			if (dynamic_cast<Candle*>(obj) || dynamic_cast<FireBall*>(obj))
+			if (dynamic_cast<Ground*>(obj) )
+				coObjects.push_back(obj);
+			else if (dynamic_cast<Candle*>(obj) || dynamic_cast<FireBall*>(obj))
 				coObjects.push_back(obj);
 			else if ((dynamic_cast<Zombie*>(obj) || dynamic_cast<Bat*>(obj))
 				&& obj->GetState() == ACTIVE)
@@ -362,12 +361,11 @@ void Manager::Update(DWORD dt)
 	}
 
 
-	if (listWeapon[0]->isDestroy != true)
+	if (weapon->isDestroy != true)
 	{
-		LPGAMEOBJECT object = listWeapon[0];
 		listCoObjects.clear();
-		GetColliableObjects(object, listCoObjects);
-		listWeapon[0]->Update(dt, &listCoObjects);
+		GetColliableObjects(weapon, listCoObjects);
+		weapon->Update(dt, &listCoObjects);
 	}
 	// update vị trí của quái vào cell mới
 	
@@ -438,7 +436,7 @@ void Manager::Render()
 	{
 		listDoors[i]->Render();
 	}
-	listWeapon[0]->Render();
+	weapon->Render();
 }
 
 void Manager::UpdateGrid()
@@ -616,14 +614,9 @@ void Manager::SetInactivationByPosition()
 		}
 	}
 
-	for (int i = 0; i < 3; i++)
-	{
-		if (listWeapon[i]->isDestroy == false)
-		{
-			if (IsInViewport(listWeapon[i]) == false)
-				listWeapon[i]->isDestroy = true;
-		}
-	}
+	if (IsInViewport(weapon) == false)
+		weapon->isDestroy = true;
+
 }
 
 void Manager::SetEnemiesSpawnPositon()
@@ -759,17 +752,17 @@ void Manager::Control()
 
 		if (IsKeyPress(DIK_Z))
 		{
-			//listWeapon[0]->isDestroy == true;
 
-			SubWeapon *weapon;
+
+			
 			if (simon->GetSubWeapon() == -1)
 			{
 				return;
 			}
-
-			if (listWeapon[0]->isDestroy == true)
-				weapon = listWeapon[0];
-			else return;
+			if (simon->GetHeart() <= 0)
+				return;
+			if (weapon->isDestroy == false)
+				return;
 
 			float x, y;
 			simon->GetPosition(x, y);
@@ -785,6 +778,7 @@ void Manager::Control()
 			weapon->setNx(simon->nx);
 			weapon->SetState(simon->SubWeapon);
 			simon->isHitSubWeapon = true;
+			simon->LoseHeart(1);
 			if (simon->GetState() == SIMON_SIT)
 				simon->SetState(SIMON_SIT_ATTACK);
 			else

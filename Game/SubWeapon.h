@@ -7,10 +7,12 @@
 #include "Bat.h"
 #include "BreakWall.h"
 #include "Boss.h"
+#include "Simon.h"
 class SubWeapon : public GameObject
 {
-
-	float x_start;
+	int scoreReceived;
+	bool isColisionGround = false;
+	int holyWaterShatteredCounter = 0;
 public:
 	SubWeapon();
 
@@ -20,8 +22,7 @@ public:
 	void SetDestroy(int state) { this->isDestroy = state; }
 	void SetState(int state);
 	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);
-
-	
+	void StartHolyWaterEffect();
 
 };
 

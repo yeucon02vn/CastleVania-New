@@ -7,6 +7,10 @@ UI::UI()
 	AddAnimation("no_hp_ani");
 	AddAnimation("boss_hp_ani");
 	AddAnimation("item_knife_ani");
+	AddAnimation("item_boomerang_ani");
+	AddAnimation("item_axe_ani");
+	AddAnimation("item_stop_watch_ani");
+	AddAnimation("item_holywater_ani");
 	AddAnimation("blackbroad_ani");
 
 
@@ -78,26 +82,26 @@ void UI::Render()
 	case ITEM_KNIFE:
 		animations[ITEM_KNIFE]->DrawBoard(348, 60);
 		break;
-	//case ITEM_AXE:
-	//	animations[5]->DrawBoard(348, 60);
-	//	break;
-	//case ITEM_BOOMERANG:
-	//	animations[6]->DrawBoard(348, 60);
-	//	break;
-	//case ITEM_HOLYWATER:
-	//	animations[7]->DrawBoard(348, 60);
-	//	break;
-	//case ITEM_STOP_WATCH:
-	//	animations[8]->DrawBoard(348, 60);
-	//	break;
+	case ITEM_BOOMERANG:
+		animations[ITEM_BOOMERANG]->DrawBoard(348, 60);
+		break;
+	case ITEM_AXE:
+		animations[ITEM_AXE]->DrawBoard(348, 60);
+		break;
+	case ITEM_STOP_WATCH:
+		animations[ITEM_STOP_WATCH]->DrawBoard(348, 60);
+		break;
+	case ITEM_HOLY_WATER:
+		animations[ITEM_HOLY_WATER]->DrawBoard(348, 60);
+		break;
 	default:
 		break;
 	}
 
 
-	/*if (simon->updateDame == ITEM_ANI_DOUBLE)
+	/*if (simon == ITEM_ANI_DOUBLE)
 		animations[9]->DrawBoard(520, 60);
-	else if (simon->updateDame == ITEM_ANI_TRIPLE)
+	else if (simon == ITEM_ANI_TRIPLE)
 	{
 		animations[10]->DrawBoard(520, 60);
 	}*/

@@ -13,6 +13,7 @@
 #include "Boss.h"
 class Whip : public GameObject
 {
+	int scoreReceived;;
 	bool isMaxLevel = false;
 public:
 	Whip();

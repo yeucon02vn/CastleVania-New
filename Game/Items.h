@@ -9,7 +9,6 @@ class Items : public GameObject
 private:
 	DWORD timeDelete;   // dùng để hủy item sau 1 khoảng time
 	bool checkMaxLevelWhip;
-	float vx_Itemfalling;
 public:
 	Items();
 
