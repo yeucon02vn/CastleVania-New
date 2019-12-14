@@ -18,7 +18,7 @@ Manager::Manager(Game * game)
 	weapon->SetDestroy(true);
 	tileMap = new TileMap(FRAME_TILE_MAP, FRAME_TILE_MAP);
 	tileMap->LoadResource();
-	Init(GAMESTATE2);
+	Init(GAMESTATE1);
 }
 
 Manager::~Manager()
@@ -377,6 +377,7 @@ void Manager::Update(DWORD dt)
 	UpdateCam();
 	UpdateGrid();
 	ui->Update(boss->GetHP(), dt, idScene);
+	ResetGame();
 }
 
 void Manager::UpdateCam()
@@ -740,7 +741,7 @@ void Manager::Control()
 	}
 	else if (IsKeyDown(DIK_K))
 	{
-		simon->SetPosition(simon->x + 50, simon->y);
+		simon->SetState(SIMON_DIE);
 	}
 	else if (IsKeyDown(DIK_UP))
 	{
@@ -863,14 +864,99 @@ void Manager::Control()
 			return;
 		simon->SetState(SIMON_STAND_IDLE);
 	}
-	if (IsKeyDown(DIK_1))
+#pragma region Phím nhảy qua map Q W E R T
+	if (IsKeyPress(DIK_Q))
 	{
-		Init(SCENE1);
+		Init(GAMESTATE1);
 	}
-	else if (IsKeyDown(DIK_2))
+	else if (IsKeyPress(DIK_W))
 	{
-		Init(SCENE2);
+		Init(GAMESTATE2);
 	}
+	else if (IsKeyPress(DIK_E))
+	{
+		Init(GAMESTATE2);
+		SetGameState(SCENE2_1);
+	}
+	else if (IsKeyPress(DIK_R))
+	{
+		Init(GAMESTATE3);
+	}
+	else if (IsKeyPress(DIK_T))
+	{
+		Init(GAMESTATE2);
+		SetGameState(SCENE2_BOSS);
+	}
+
+#pragma endregion
+#pragma region Phím item
+	if (IsKeyPress(DIK_0))
+	{
+		Items *item = new Items();
+		item->SetState(ITEM_SMALL_HEART);
+		item->isEffect = false;
+		item->SetPosition(simon->x + 100, simon->y - 100);
+		listItems.push_back(item);
+	}
+	else if (IsKeyPress(DIK_1))
+	{
+		Items *item = new Items();
+		item->SetState(ITEM_BIG_HEART);
+		item->isEffect = false;
+		item->SetPosition(simon->x + 100, simon->y - 100);
+		listItems.push_back(item);
+	}
+	else if (IsKeyPress(DIK_2))
+	{
+		Items *item = new Items();
+		item->SetState(ITEM_WHIP);
+		item->isEffect = false;
+		item->SetPosition(simon->x + 100, simon->y - 100);
+		listItems.push_back(item);
+	}
+	else if (IsKeyPress(DIK_3))
+	{
+		Items *item = new Items();
+		item->SetState(ITEM_KNIFE);
+		item->isEffect = false;
+		item->SetPosition(simon->x + 100, simon->y - 100);
+		listItems.push_back(item);
+	}
+	else if (IsKeyPress(DIK_4))
+	{
+		Items *item = new Items();
+		item->SetState(ITEM_BOOMERANG);
+		item->isEffect = false;
+		item->SetPosition(simon->x + 100, simon->y - 100);
+		listItems.push_back(item);
+	}
+	else if (IsKeyPress(DIK_5))
+	{
+		Items *item = new Items();
+		item->SetState(ITEM_AXE);
+		item->isEffect = false;
+		item->SetPosition(simon->x + 100, simon->y - 100);
+		listItems.push_back(item);
+	}
+	else if (IsKeyPress(DIK_6))
+	{
+		Items *item = new Items();
+		item->SetState(ITEM_STOP_WATCH);
+		item->isEffect = false;
+		item->SetPosition(simon->x + 100, simon->y - 100);
+		listItems.push_back(item);
+	}
+	else if (IsKeyPress(DIK_7))
+	{
+		Items *item = new Items();
+		item->SetState(ITEM_HOLY_WATER);
+		item->isEffect = false;
+		item->SetPosition(simon->x + 100, simon->y - 100);
+		listItems.push_back(item);
+	}
+#pragma endregion
+
+
 }
 
 void Manager::fnChangeScene()
@@ -1082,4 +1168,51 @@ bool Manager::SimonWalkThroughDoor()
 bool Manager::CheckSimonCollisionStair()
 {
 	return simon->CheckCollisionWithStair(&listStairs);
+}
+
+void Manager::ResetGame()
+{
+	if (simon->isCheckReset == true)
+	{
+		int life = simon->GetLife();
+		if (life <= 0)
+			return;
+		simon = new Simon();
+		if (life > 0)
+			simon->SetLife(life);
+
+		ui->SetSimon(simon);
+		boss = new Boss();
+		boss->SetState(BOSS_SLEEP);
+
+		switch (idScene)
+		{
+		case SCENE1:
+			Init(GAMESTATE1);
+			break;
+		case SCENE2:
+
+			Init(GAMESTATE2);
+			break;
+		case SCENE2_1:
+		case SCENE2_2:
+		case SCENE2_3:
+			Init(GAMESTATE2);
+			SetGameState(SCENE2_1);
+			break;
+		case SCENE2_BOSS:
+			Init(GAMESTATE2);
+			SetGameState(SCENE2_BOSS);
+			isBossFighting = false;
+			break;
+		case SCENE3_1:
+		case SCENE3_2:
+			Init(GAMESTATE2);
+			SetGameState(SCENE2_1);
+			break;
+
+		default:
+			break;
+		}
+	}
 }

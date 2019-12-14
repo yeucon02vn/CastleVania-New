@@ -47,7 +47,7 @@ void Items::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 		}
 	}
 	
-
+	vy += ITEM_GRAVITY * dt;
 
 
 	GameObject::Update(dt);
@@ -82,11 +82,12 @@ void Items::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 			// collision of Simon and Candle -> do nothing -> update x;
 			if (dynamic_cast<Ground *>(e->obj))
 			{
+				OutputDebugString(L"vaoday");
 				y += min_ty * dy + ny * 0.4f;
 
-				if (nx != 0) vx = 0;
+				if (e->nx != 0) vx = 0;
 
-				if (ny != 0)
+				if (e->ny != 0)
 				{
 					
 					vy = 0;
@@ -228,15 +229,4 @@ void Items::SetState(int state)
 {
 	GameObject::SetState(state);
 
-	switch (state)
-	{
-	case ITEM_SMALL_HEART:
-		vx = 0;
-		vy = ITEM_FALLING_SPEED_Y;
-		break;
-	default:
-		vx = 0;
-		vy = ITEM_FALLING_SPEED_Y;
-		break;
-	}
 }

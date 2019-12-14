@@ -79,4 +79,5 @@ public:
 	bool SimonWalkThroughDoor(); 
 	bool CheckSimonCollisionStair();
 	void UpdateCam();
+	void ResetGame();
 };
