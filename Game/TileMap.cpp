@@ -112,14 +112,13 @@ void TileMap::LoadMap(int idscene)
 		minWidthRenderCam = 4080;
 		maxWidthRenderCam = MAP_WIDTH_LV2;
 		
-		ScreenRow = MAP_HEIGHT_LV2 / FrameHeight;
-		ColumnMatrix = MAP_WIDTH_LV2 / FrameWidth;
+		//ScreenRow = MAP_HEIGHT_LV2 / FrameHeight;
+		//ColumnMatrix = MAP_WIDTH_LV2 / FrameWidth;
 
-		ReadMap(L"Scenes\\Scene2.txt");
-		animation = new Animation(0);
-		for (int i = 0; i < 102; i++)
-			animation->Add("TileMap2_" + to_string(i));
-		break;
+		//ReadMap(L"Scenes\\Scene2.txt");
+		//animation = new Animation(0);
+		//for (int i = 0; i < 102; i++)
+		//	animation->Add("TileMap2_" + to_string(i));
 		break;
 	}
 	case SCENE3_1:

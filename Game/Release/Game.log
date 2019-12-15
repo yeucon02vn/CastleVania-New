@@ -1,17 +1,8 @@
-﻿  Manager.cpp
-  e:\castlevania\castlevania\castlevania-new\game\library\inc\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-e:\castlevania\castlevania\castlevania-new\game\define.h(6): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
-  e:\castlevania\castlevania\castlevania-new\game\library\inc\dinput.h(42): note: see previous definition of 'DIRECTINPUT_VERSION'
-e:\castlevania\castlevania\castlevania-new\game\manager.cpp(322): warning C4018: '<': signed/unsigned mismatch
-e:\castlevania\castlevania\castlevania-new\game\manager.cpp(359): warning C4018: '<': signed/unsigned mismatch
-e:\castlevania\castlevania\castlevania-new\game\manager.cpp(363): warning C4018: '<': signed/unsigned mismatch
-e:\castlevania\castlevania\castlevania-new\game\manager.cpp(418): warning C4018: '<': signed/unsigned mismatch
-e:\castlevania\castlevania\castlevania-new\game\manager.cpp(422): warning C4018: '<': signed/unsigned mismatch
-e:\castlevania\castlevania\castlevania-new\game\manager.cpp(426): warning C4018: '<': signed/unsigned mismatch
-e:\castlevania\castlevania\castlevania-new\game\manager.cpp(433): warning C4018: '<': signed/unsigned mismatch
-e:\castlevania\castlevania\castlevania-new\game\manager.cpp(442): warning C4018: '<': signed/unsigned mismatch
-e:\castlevania\castlevania\castlevania-new\game\manager.cpp(447): warning C4018: '<': signed/unsigned mismatch
-e:\castlevania\castlevania\castlevania-new\game\manager.cpp(457): warning C4018: '<': signed/unsigned mismatch
-e:\castlevania\castlevania\castlevania-new\game\manager.cpp(727): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-e:\castlevania\castlevania\castlevania-new\game\manager.cpp(969): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Game.vcxproj -> E:\CastleVania\CastleVania\CastleVania-New\Release\Game.exe
+﻿  Boss.cpp
+  d:\castlevania-new\game\library\inc\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+d:\castlevania-new\game\define.h(6): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
+  d:\castlevania-new\game\library\inc\dinput.h(42): note: see previous definition of 'DIRECTINPUT_VERSION'
+d:\castlevania-new\game\boss.cpp(10): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+d:\castlevania-new\game\boss.cpp(94): warning C4244: 'argument': conversion from 'DWORD' to 'float', possible loss of data
+d:\castlevania-new\game\boss.cpp(98): warning C4244: 'argument': conversion from 'DWORD' to 'float', possible loss of data
+  Game.vcxproj -> D:\CastleVania-New\Release\Game.exe

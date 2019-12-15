@@ -149,7 +149,8 @@ void Manager::LoadObjects(int id)
 		BreakWall * breakwall = new BreakWall();
 		breakwall->SetPosition(obj.x, obj.y);
 		breakwall->SetState(HIDDEN);
-		breakwall->isDropItem = true;
+		if(!(obj.x == 3584 && obj.y == 384))
+			breakwall->isDropItem = true;
 		unit = new Unit(grid, breakwall, obj.x, obj.y);
 		break;
 	}
@@ -276,7 +277,7 @@ void Manager::GetColliableObjects(LPGAMEOBJECT curObj, vector<LPGAMEOBJECT>& coO
 					coObjects.push_back(obj);
 				else if (dynamic_cast<FishMan*>(obj) && (obj->GetState() == ACTIVE || obj->GetState() == FISHMAN_JUMP))
 					coObjects.push_back(obj);
-				else if (dynamic_cast<Boss*>(obj) && obj->GetState() == BOSS_ACTIVE)
+				else if (dynamic_cast<Boss*>(obj) && obj->GetState() != BOSS_SLEEP)
 					coObjects.push_back(obj);
 			}
 		}
@@ -302,11 +303,11 @@ void Manager::Update(DWORD dt)
 
 	GetObjectFromGrid();
 	SetEnemiesSpawnPositon();
-
 	GetColliableObjects(simon, listCoObjects);
 	simon->Update(dt, &listCoObjects);
 	simon->CheckCollisionWithItem(&listItems);
 	simon->CheckCollisionWithEnemyActiveArea(&listGridObjects);
+
 
 	for (int i = 0; i < listGridObjects.size(); i++)
 	{
@@ -347,7 +348,10 @@ void Manager::Update(DWORD dt)
 
 	for (int i = 0; i < listEffects.size(); i++)
 	{
-		listEffects[i]->Update(dt);
+		if(listEffects[i]->isDestroy != true)
+			listEffects[i]->Update(dt);
+		else
+			listEffects.erase(listEffects.begin() + i);
 	}
 	for (int i = 0; i < listItems.size(); i++)
 	{
@@ -466,11 +470,12 @@ void Manager::DeleteObject(LPGAMEOBJECT object, int i)
 		item->isEffect = false;
 		item->SetPosition(object->x, object->y);
 		listItems.push_back(item);
-		if (dynamic_cast<BreakWall*>(object))
-		{
-			object->isDestroy = false;
-			return;
-		}
+		
+	}
+	if (dynamic_cast<BreakWall*>(object))
+	{
+		object->isDestroy = false;
+		return;
 	}
 
 	if (object->isEffect == false)
@@ -739,10 +744,6 @@ void Manager::Control()
 			return;
 		simon->SetState(SIMON_JUMP);
 	}
-	else if (IsKeyDown(DIK_K))
-	{
-		simon->SetState(SIMON_DIE);
-	}
 	else if (IsKeyDown(DIK_UP))
 	{
 		if (CheckSimonCollisionStair() == true)
@@ -864,6 +865,19 @@ void Manager::Control()
 			return;
 		simon->SetState(SIMON_STAND_IDLE);
 	}
+	// dev test
+#pragma region Phím xử lý khác
+	if (IsKeyPress(DIK_K))
+	{
+		simon->SetState(SIMON_DIE);
+	}
+	else if (IsKeyPress(DIK_L))
+	{
+		simon->AddHP(2);
+
+	}
+#pragma endregion
+
 #pragma region Phím nhảy qua map Q W E R T
 	if (IsKeyPress(DIK_Q))
 	{
@@ -1038,7 +1052,7 @@ void Manager::Simon_Stair_Up()
 			int nx = simon->stairDirection;
 			simon->setNx(nx);
 			simon->SetState(SIMON_STAIR_UP);
-			simon->AutoWalk(16 * nx, SIMON_STAND_IDLE, nx);
+			simon->AutoWalk(15 * nx, SIMON_STAND_IDLE, nx);
 		}
 
 		return;
@@ -1115,7 +1129,7 @@ bool Manager::SimonWalkThroughDoor()
 
 	if (isMovingCamera1 == true)
 	{
-		if (countDxCamera < 240)			// Di chuyển camera một đoạn 224
+		if (countDxCamera < 240)			// Di chuyển camera một đoạn 240
 		{
 			countDxCamera += 2;
 
@@ -1140,7 +1154,7 @@ bool Manager::SimonWalkThroughDoor()
 			{
 				isMovingCamera2 = true;
 
-				if (countDxCamera < 620)	// Di chuyển camera thêm một đoạn -> 480
+				if (countDxCamera < 620)	// Di chuyển camera thêm một đoạn -> 620
 				{
 					countDxCamera += 2;
 
@@ -1174,6 +1188,8 @@ void Manager::ResetGame()
 {
 	if (simon->isCheckReset == true)
 	{
+		float x;
+		simon->getX(x);
 		int life = simon->GetLife();
 		if (life <= 0)
 			return;
@@ -1187,26 +1203,19 @@ void Manager::ResetGame()
 
 		switch (idScene)
 		{
-		case SCENE1:
+		case GAMESTATE1:
 			Init(GAMESTATE1);
 			break;
-		case SCENE2:
+		case GAMESTATE2:
 
 			Init(GAMESTATE2);
-			break;
-		case SCENE2_1:
-		case SCENE2_2:
-		case SCENE2_3:
-			Init(GAMESTATE2);
+			if(x > 3072 && x < 4096)
 			SetGameState(SCENE2_1);
-			break;
-		case SCENE2_BOSS:
-			Init(GAMESTATE2);
-			SetGameState(SCENE2_BOSS);
+			else if( x > 4096)
+				SetGameState(SCENE2_BOSS);
 			isBossFighting = false;
 			break;
-		case SCENE3_1:
-		case SCENE3_2:
+		case GAMESTATE3:
 			Init(GAMESTATE2);
 			SetGameState(SCENE2_1);
 			break;

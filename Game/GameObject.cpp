@@ -53,7 +53,10 @@ LPCOLLISIONEVENT GameObject::SweptAABBEx(LPGAMEOBJECT coO)
 
 	float sdx = svx * dt;
 	float sdy = svy * dt;
-
+	if (sdx != 0)
+	{
+		OutputDebugString(L"vao day test");
+	}
 	float dx = this->dx - sdx;
 	float dy = this->dy - sdy;
 

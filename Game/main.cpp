@@ -96,7 +96,7 @@ void LoadSprites(int id, LPCWSTR tex, LPCWSTR sprite_data, LPCWSTR animation_dat
 
 void LoadResources()
 {
-	textures->Add(ID_TEX_BBOX, L"Textures\\BBox.png", D3DCOLOR_XRGB(255, 0, 255));
+	textures->Add(ID_TEX_BBOX, L"Textures\\bbox.png", D3DCOLOR_XRGB(255, 0, 255));
 	LoadSprites(ID_TEX, L"Textures\\Castlevania.png", L"Textures\\Castlevania_sprites.txt", L"Textures\\Castlevania_animations.txt");
 	mapsObjects->Add(GAMESTATE1, L"Scenes\\Scene1_objects.txt");
 	mapsObjects->Add(GAMESTATE2, L"Scenes\\Scene2_objects.txt");
