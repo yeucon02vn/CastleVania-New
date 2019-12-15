@@ -740,23 +740,24 @@ void Manager::Control()
 
 	if (IsKeyPress(DIK_SPACE))
 	{
-		if (simon->isCoGround == false || simon->GetState() == SIMON_SIT)
+		if (simon->isJumping == true || simon->GetState() == SIMON_SIT)
 			return;
 		simon->SetState(SIMON_JUMP);
 	}
+
 	else if (IsKeyDown(DIK_UP))
 	{
+		
 		if (CheckSimonCollisionStair() == true)
 		{
+			if (simon->isJumping)
+				return;
 			Simon_Stair_Up();
 			return;
 		}
 
 		if (IsKeyPress(DIK_Z))
 		{
-
-
-			
 			if (simon->GetSubWeapon() == -1)
 			{
 				return;
@@ -787,13 +788,12 @@ void Manager::Control()
 				simon->SetState(SIMON_STAND_ATTACK);
 		}
 	}
-
 	else if (IsKeyPress(DIK_Z))
 	{
 		if (CheckSimonCollisionStair() && simon->isStandOnStair == true)
 		{
 			if (simon->nx > 0)
-				if(simon->stairDirection == 1)
+				if (simon->stairDirection == 1)
 					simon->SetState(SIMON_HIT_STAIR_UP);
 				else
 					simon->SetState(SIMON_HIT_STAIR_DOWN);
@@ -805,7 +805,7 @@ void Manager::Control()
 		}
 		if (simon->GetState() == SIMON_SIT)
 			simon->SetState(SIMON_SIT_ATTACK);
-		else if (simon->GetState() == SIMON_STAND_IDLE || simon->GetState() == SIMON_JUMP)
+		else //if (simon->GetState() == SIMON_STAND_IDLE || simon->GetState() == SIMON_JUMP)
 			simon->SetState(SIMON_STAND_ATTACK);
 
 	}
@@ -820,7 +820,7 @@ void Manager::Control()
 
 			return;
 		}
-		if (simon->isCoGround == false)
+		if (simon->isCoGround == false || simon->isJumping) // 
 			return;
 		simon->SetState(SIMON_WALK);
 		simon->setNx(-1);
@@ -836,20 +836,21 @@ void Manager::Control()
 
 			return;
 		}
-		if (simon->isCoGround == false)
+		if (simon->isCoGround == false || simon->isJumping) // || simon->isJumping
 			return;
 		simon->SetState(SIMON_WALK);
 		simon->setNx(1);
 	}
-
 	else if (IsKeyDown(DIK_DOWN))
 	{
 		if (CheckSimonCollisionStair() == true)
 		{
+			if (simon->isJumping)
+				return;
 			Simon_Stair_Down();
 			return;
 		}
-		if (simon->isCoGround == false)
+		if (simon->isCoGround == false || simon->isJumping)
 			return;
 		simon->SetState(SIMON_SIT);
 	}
