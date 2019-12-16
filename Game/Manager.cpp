@@ -303,6 +303,7 @@ void Manager::Update(DWORD dt)
 
 	GetObjectFromGrid();
 	SetEnemiesSpawnPositon();
+
 	GetColliableObjects(simon, listCoObjects);
 	simon->Update(dt, &listCoObjects);
 	simon->CheckCollisionWithItem(&listItems);

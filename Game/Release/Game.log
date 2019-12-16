@@ -1,8 +1,7 @@
-﻿  Boss.cpp
+﻿  Fishman.cpp
   d:\castlevania-new\game\library\inc\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
 d:\castlevania-new\game\define.h(6): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
   d:\castlevania-new\game\library\inc\dinput.h(42): note: see previous definition of 'DIRECTINPUT_VERSION'
-d:\castlevania-new\game\boss.cpp(10): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-d:\castlevania-new\game\boss.cpp(94): warning C4244: 'argument': conversion from 'DWORD' to 'float', possible loss of data
-d:\castlevania-new\game\boss.cpp(98): warning C4244: 'argument': conversion from 'DWORD' to 'float', possible loss of data
+d:\castlevania-new\game\fishman.cpp(52): warning C4244: 'initializing': conversion from 'DWORD' to 'float', possible loss of data
+d:\castlevania-new\game\fishman.cpp(125): warning C4018: '<': signed/unsigned mismatch
   Game.vcxproj -> D:\CastleVania-New\Release\Game.exe
