@@ -89,6 +89,19 @@ void TileMap::LoadMap(int idscene)
 			animation->Add("TileMap2_" + to_string(i));
 		break;
 	}
+	case SCENE3_1:
+	case SCENE3_2:
+	{
+		ScreenRow = MAP_HEIGHT_LV3 / FrameHeight;
+		ColumnMatrix = (MAP_WIDTH_LV3 + 64) / FrameWidth;
+		maxWidthRenderCam = MAP_WIDTH_LV3;
+
+		ReadMap(L"Scenes\\Scene3.txt");
+		animation = new Animation(0);
+		for (int i = 0; i < 28; i++)
+			animation->Add("TileMap3_" + to_string(i));
+		break;
+	}
 	case SCENE2_1:
 	case SCENE2_2:
 	case SCENE2_3:
@@ -121,19 +134,7 @@ void TileMap::LoadMap(int idscene)
 		//	animation->Add("TileMap2_" + to_string(i));
 		break;
 	}
-	case SCENE3_1:
-	case SCENE3_2:
-	{
-		ScreenRow = MAP_HEIGHT_LV3 / FrameHeight;
-		ColumnMatrix = (MAP_WIDTH_LV3 + 64) / FrameWidth;
-		maxWidthRenderCam = MAP_WIDTH_LV3;
 
-		ReadMap(L"Scenes\\Scene3.txt");
-		animation = new Animation(0);
-		for (int i = 0; i < 28; i++)
-			animation->Add("TileMap3_" + to_string(i));
-		break;
-	}
 	default:
 		break;
 	}

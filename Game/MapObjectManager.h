@@ -33,6 +33,6 @@ class MapsObjectsManager {
 public:
 	void Add(int ID, LPCWSTR filePath_data);
 	LPObjectsManager Get(int ID) { return mapsObjects[ID]; }
-
+	void LoadObjectManagerFromFile(LPCWSTR filePath_data);
 	static MapsObjectsManager * GetInstance();
 };

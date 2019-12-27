@@ -24,6 +24,27 @@ void ObjectsManager::LoadObjectFromFile(LPCWSTR path)
 
 }
 
+void MapsObjectsManager::LoadObjectManagerFromFile(LPCWSTR path)
+{
+	fstream fs;
+	fs.open(path, ios::in);
+	if (fs.fail())
+	{
+		DebugOut(L"[ERROR] Scene %d load data failed: file path = %s\n", path);
+		fs.close();
+		return;
+	}
+	int ID_MapObj;
+	string path_data;
+	while (!fs.eof())
+	{
+		fs >> ID_MapObj >> path_data;
+		wstring path_object(path_data.begin(), path_data.end());
+		Add(ID_MapObj, path_object.c_str());
+	}
+
+}
+
 MapsObjectsManager * MapsObjectsManager::_instance = NULL;
 
 void MapsObjectsManager::Add(int ID, LPCWSTR filePath_data)
@@ -38,3 +59,4 @@ MapsObjectsManager * MapsObjectsManager::GetInstance()
 	if (_instance == NULL) _instance = new MapsObjectsManager();
 	return _instance;
 }
+

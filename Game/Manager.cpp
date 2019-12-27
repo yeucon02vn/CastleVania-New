@@ -28,30 +28,10 @@ Manager::~Manager()
 void Manager::Init(int idScene)
 {
 	this->idScene = idScene;
-	switch (idScene)
-	{
-	case GAMESTATE1:
-		grid = new Grid(1536, 480);
-		LoadObjects(GAMESTATE1);
-		SetGameState(SCENE1);
-		ui->ResetTime();
-		break;
-	case GAMESTATE2:
-		grid = new Grid(5632, 480);
-		LoadObjects(GAMESTATE2);
-		SetGameState(SCENE2);
-		ui->ResetTime();
-		break;
-	case GAMESTATE3:
-		grid = new Grid(1024, 480);
-		LoadObjects(GAMESTATE3);
-		//simon->SetState(SIMON_STAIR_DOWN);
-		SetGameState(SCENE3_1);
-		ui->ResetTime();
-		break;
-	default:
-		break;
-	}
+	LoadObjects(idScene);
+	SetGameState(idScene);
+	ui->ResetTime();
+	
 }
 
 void Manager::LoadObjects(int id)
@@ -59,9 +39,14 @@ void Manager::LoadObjects(int id)
 
 	vector<Object> objects = mapsObjects->Get(id)->getMapobject();
 
+	
+
 	for(auto obj : objects)
 	switch (obj.idObject)
 	{
+	case GRID:
+		grid = new Grid(obj.x, obj.y);
+		break;
 	case CANDLE:
 	{
 		Candle * candle = new Candle();
@@ -804,7 +789,7 @@ void Manager::Control()
 				else
 					simon->SetState(SIMON_HIT_STAIR_UP);
 		}
-		if (simon->GetState() == SIMON_SIT)
+		else if (simon->GetState() == SIMON_SIT)
 			simon->SetState(SIMON_SIT_ATTACK);
 		else //if (simon->GetState() == SIMON_STAND_IDLE || simon->GetState() == SIMON_JUMP)
 			simon->SetState(SIMON_STAND_ATTACK);

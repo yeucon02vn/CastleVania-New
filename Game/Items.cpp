@@ -15,7 +15,9 @@ Items::Items() : GameObject()
 	AddAnimation("item_axe_ani");
 	AddAnimation("item_stop_watch_ani");
 	AddAnimation("item_holywater_ani");
-
+	AddAnimation("item_cross_ani");
+	AddAnimation("item_porkchop_ani");
+	AddAnimation("item_red_money_bag_ani");
 }
 
 void Items::Render()
@@ -135,20 +137,20 @@ void Items::RandomItem()
 	}
 	else if (percent < 70)
 	{
-		SetState(ITEM_BIG_HEART);
+		SetState(ITEM_MONEY);
 	}
 
-	/*else if (percent < 80)
+	else if (percent < 80)
 	{
-		state = ITEM_ROAST;
+		SetState(ITEM_BIG_HEART);
 	}
 	else if (percent < 85)
 	{
-		state = ITEM_ANI_ROSASY;
+		SetState(ITEM_PORKCHOP);
 	}
-	else if (percent < 90)
+	/*else if (percent < 90)
 	{
-		state = ITEM_ANI_DOUBLE;
+		state = ITEM_CROSS;
 	}
 	else if (percent < 95)
 	{
@@ -175,9 +177,13 @@ void Items::RandomSubWeapon()
 	{
 		SetState(ITEM_HOLY_WATER);
 	}
-	else
+	else if(percent < 90)
 	{
 		SetState(ITEM_STOP_WATCH);
+	}
+	else
+	{
+		SetState(ITEM_CROSS);
 	}
 
 }
@@ -220,7 +226,18 @@ void Items::GetBoundingBox(float & left, float & top, float & right, float & bot
 	case ITEM_HOLY_WATER:
 		right = x + HOLY_WATER_BBOX_WIDTH;
 		bottom = y + HOLY_WATER_BBOX_HEIGHT;
+		break;
+	case ITEM_PORKCHOP:
+		right = x + PORKCHOP_BBOX_WIDTH;
+		bottom = y + PORKCHOP_BBOX_HEIGHT;
+		break;
+	case ITEM_MONEY:
+		right = x + MONEY_BBOX_WIDTH;
+		bottom = y + MONEY_BBOX_HEIGHT;
+		break;
 	default:
+		right = x + BOOMERANG_BBOX_WIDTH;
+		bottom = y + BOOMERANG_BBOX_HEIGHT;
 		break;
 	}
 }

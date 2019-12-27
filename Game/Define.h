@@ -112,6 +112,10 @@
 #define BOOMERANG_BBOX_HEIGHT		28
 #define STOP_WATCH_BBOX_WIDTH		30
 #define STOP_WATCH_BBOX_HEIGHT		32
+#define PORKCHOP_BBOX_WIDTH		32
+#define PORKCHOP_BBOX_HEIGHT	26
+#define MONEY_BBOX_WIDTH		20
+#define MONEY_BBOX_HEIGHT		30
 
 
 #define CHANGSCENE_BBOX		32
@@ -171,7 +175,9 @@
 #define ITEM_AXE					5
 #define ITEM_STOP_WATCH				6
 #define ITEM_HOLY_WATER				7
-
+#define ITEM_CROSS					8
+#define ITEM_PORKCHOP				9
+#define ITEM_MONEY					10
 
 #define ENEMY_DELAY_RESPAWN_TIME	450
 #define HURT_TIME	200
@@ -185,7 +191,7 @@
 #define BUBBLES_TIME			1000
 #define WALLPIECES_TIME			2000
 #define FISHMAN_HIT_ANI_TIME_DELAY 800
-#define HOLY_WATER_TIME_EFFECT	1500
+#define HOLY_WATER_TIME_EFFECT	1000
 #define STOP_WATCH_TIME		2000
 
 #define WHIP_NORMAL 0
@@ -194,12 +200,12 @@
 
 #define SCENE1	1
 #define SCENE2	2
-#define SCENE2_1 3
-#define SCENE2_2 4
-#define SCENE2_3 5
-#define SCENE2_BOSS 6
-#define SCENE3_1	7
-#define SCENE3_2	8
+#define SCENE3_1	3
+#define SCENE3_2	4
+#define SCENE2_1 5
+#define SCENE2_2 6
+#define SCENE2_3 7
+#define SCENE2_BOSS 8
 
 #define GAMESTATE1 1
 #define GAMESTATE2 2
@@ -224,6 +230,7 @@
 #define FRAME_TILE_MAP (int)32
 #define MAP_CHECK_2	(int)3500
 #define MAP_CHECK_3	(int)300
+#define GRID -1
 #define CANDLE 0
 #define GROUND 1
 #define STAIR 2
@@ -236,6 +243,7 @@
 #define WATER 9
 #define BREAKWALL 10
 #define BOSS 11
+
 
 #define DOOR1 0
 #define DOOR2_IDLE 1
