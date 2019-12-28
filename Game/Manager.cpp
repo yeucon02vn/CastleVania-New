@@ -39,7 +39,6 @@ void Manager::LoadObjects(int id)
 
 	vector<Object> objects = mapsObjects->Get(id)->getMapobject();
 
-	
 
 	for(auto obj : objects)
 	switch (obj.idObject)
@@ -53,7 +52,7 @@ void Manager::LoadObjects(int id)
 		candle->SetPosition(obj.x, obj.y);
 		candle->SetState(obj.state);
 		candle->isDropItem = true;
-		unit = new Unit(grid, candle, obj.x, obj.y);
+		grid->Add(candle, obj.x / 256, obj.y /240);
 		break;
 	}
 	case GROUND:
@@ -62,7 +61,7 @@ void Manager::LoadObjects(int id)
 		ground->SetPosition(obj.x, obj.y);
 		ground->SetState(obj.state);
 
-		unit = new Unit(grid, ground, obj.x, obj.y);
+		grid->Add(ground, obj.x / 256, obj.y / 240);
 		break;
 	}
 
@@ -71,7 +70,7 @@ void Manager::LoadObjects(int id)
 		Stair * stair = new Stair();
 		stair->SetPosition(obj.x, obj.y);
 		stair->SetState(obj.state);
-		unit = new Unit(grid, stair, obj.x, obj.y);
+		grid->Add(stair, obj.x / 256, obj.y / 240);
 		break;
 	}
 	case DOOR:
@@ -79,7 +78,7 @@ void Manager::LoadObjects(int id)
 		Door * door = new Door();
 		door->SetPosition(obj.x, obj.y);
 		door->SetState(obj.state);
-		unit = new Unit(grid, door, obj.x, obj.y);
+		grid->Add(door, obj.x / 256, obj.y / 240);
 		break;
 	}
 	case ZOMBIE:
@@ -87,7 +86,7 @@ void Manager::LoadObjects(int id)
 		Zombie * zombie = new Zombie();
 		zombie->SetEntryPosition(obj.x, obj.y);
 		zombie->SetState(ZOMBIE_IDLE);
-		unit = new Unit(grid, zombie, obj.x, obj.y);
+		grid->Add(zombie, obj.x / 256, obj.y / 240);
 		break;
 	}
 	case PANTHER:
@@ -95,7 +94,7 @@ void Manager::LoadObjects(int id)
 		Panther * panther = new Panther();
 		panther->SetEntryPosition(obj.x, obj.y);
 		panther->SetState(PANTHER_IDLE_INACTIVE);
-		unit = new Unit(grid, panther, obj.x, obj.y);
+		grid->Add(panther, obj.x / 256, obj.y / 240);
 		break;
 	}
 	case BAT:
@@ -103,7 +102,7 @@ void Manager::LoadObjects(int id)
 		Bat * bat = new Bat();
 		bat->SetEntryPosition(obj.x, obj.y);
 		bat->SetState(BAT_IDLE);
-		unit = new Unit(grid, bat, obj.x, obj.y);
+		grid->Add(bat, obj.x / 256, obj.y / 240);
 		break;
 	}
 	case FISHMAN:
@@ -111,7 +110,7 @@ void Manager::LoadObjects(int id)
 		FishMan * fishman = new FishMan();
 		fishman->SetEntryPosition(obj.x, obj.y);
 		fishman->SetState(FISHMAN_IDLE);
-		unit = new Unit(grid, fishman, obj.x, obj.y);
+		grid->Add(fishman, obj.x / 256, obj.y / 240);
 		break;
 	}
 	case CHANGE_SCENE_OBJECT:
@@ -119,14 +118,14 @@ void Manager::LoadObjects(int id)
 		ChangeScene * changeScene = new ChangeScene();
 		changeScene->SetPosition(obj.x, obj.y);
 		changeScene->SetIdScene(obj.state);
-		unit = new Unit(grid, changeScene, obj.x, obj.y);
+		grid->Add(changeScene, obj.x / 256, obj.y / 240);
 		break;
 	}
 	case WATER:
 	{
 		water = new Water();
 		water->SetPosition(obj.x, obj.y);
-		unit = new Unit(grid, water, obj.x, obj.y);
+		grid->Add(water, obj.x / 256, obj.y / 240);
 		break;
 	}
 	case BREAKWALL:
@@ -136,7 +135,7 @@ void Manager::LoadObjects(int id)
 		breakwall->SetState(HIDDEN);
 		if(!(obj.x == 3584 && obj.y == 384))
 			breakwall->isDropItem = true;
-		unit = new Unit(grid, breakwall, obj.x, obj.y);
+		grid->Add(breakwall, obj.x / 256, obj.y /240);
 		break;
 	}
 
@@ -144,7 +143,7 @@ void Manager::LoadObjects(int id)
 	{
 		boss = new Boss();
 		boss->setPoisitionBoss(obj.x, obj.y);
-		unit = new Unit(grid, boss, obj.x, obj.y);
+		grid->Add(boss, obj.x / 256, obj.y / 240);
 		break;
 	}
 
@@ -155,22 +154,21 @@ void Manager::LoadObjects(int id)
 
 void Manager::GetObjectFromGrid()
 {
-	listUnits.clear();
+	listGetObject.clear();
 	listGridObjects.clear();
 	listStairs.clear();
 	listDoors.clear();
 	listStaticObjects.clear();
 	listMovingObjects.clear();
 
-	grid->Get(game->getCamPosition(), listUnits);
+	grid->Get(game->getCamPosition(), listGetObject);
 
 	//DebugOut(L"%d \n", listUnits.size());
 
-	for (UINT i = 0; i < listUnits.size(); i++)
+	for (UINT i = 0; i < listGetObject.size(); i++)
 	{
-		LPGAMEOBJECT obj = listUnits[i]->GetObj();
+		LPGAMEOBJECT obj = listGetObject[i];
 		listGridObjects.push_back(obj);
-
 		if (dynamic_cast<Stair*>(obj))
 			listStairs.push_back(obj);
 		else if (dynamic_cast<Door*>(obj))
@@ -365,7 +363,7 @@ void Manager::Update(DWORD dt)
 	
 	SetInactivationByPosition();
 	UpdateCam();
-	UpdateGrid();
+	grid->Move(game->getCamPosition());
 	ui->Update(boss->GetHP(), dt, idScene);
 	ResetGame();
 }
@@ -430,20 +428,20 @@ void Manager::Render()
 	weapon->Render();
 }
 
-void Manager::UpdateGrid()
-{
-	GetObjectFromGrid();
-	for (int i = 0; i < listUnits.size(); i++)
-	{
-		LPGAMEOBJECT obj = listUnits[i]->GetObj();
-		if (dynamic_cast<Enemy*>(obj))
-		{
-			float newPos_x, newPos_y;
-			obj->GetPosition(newPos_x, newPos_y);
-			listUnits[i]->Move(newPos_x, newPos_y);
-		}
-	}
-}
+//void Manager::UpdateGrid()
+//{
+//	GetObjectFromGrid();
+//	for (int i = 0; i < listGetObject.size(); i++)
+//	{
+//		LPGAMEOBJECT obj = listGetObject[i];
+//		if (dynamic_cast<Enemy*>(obj))
+//		{
+//			float newPos_x, newPos_y;
+//			obj->GetPosition(newPos_x, newPos_y);
+//			listGetObject[i]->Move(newPos_x, newPos_y);
+//		}
+//	}
+//}
 
 void Manager::DeleteObject(LPGAMEOBJECT object, int i)
 {
@@ -485,12 +483,12 @@ void Manager::DeleteObject(LPGAMEOBJECT object, int i)
 	if (dynamic_cast<Enemy*>(object))
 	{
 		if(dynamic_cast<Boss*>(object))
-			grid->Delete(listUnits[i]);
+			grid->Delete(game->getCamPosition());
 		return;
 	}
 	else
 	{
-		grid->Delete(listUnits[i]);
+		grid->Delete(game->getCamPosition());
 	}
 }
 

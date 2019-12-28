@@ -23,13 +23,13 @@
 #include "Boss.h"
 #include "MapObjectManager.h"
 #include "UI.h"
+
 using namespace std;
 class Manager {
 	int idScene;
 	Grid * grid;
-	Unit * unit;
 	Game *game;
-	vector<Unit*> listUnits;
+	vector<LPGAMEOBJECT> listGetObject;
 	vector<LPGAMEOBJECT> listGridObjects;
 	vector<LPITEMS> listItems;
 	vector<LPGAMEOBJECT> listStairs;

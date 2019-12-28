@@ -84,7 +84,7 @@ void Items::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 			// collision of Simon and Candle -> do nothing -> update x;
 			if (dynamic_cast<Ground *>(e->obj))
 			{
-				OutputDebugString(L"vaoday");
+
 				y += min_ty * dy + ny * 0.4f;
 
 				if (e->nx != 0) vx = 0;
