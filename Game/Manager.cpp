@@ -44,7 +44,7 @@ void Manager::LoadObjects(int id)
 	switch (obj.idObject)
 	{
 	case GRID:
-		grid = new Grid(obj.x, obj.y);
+		grid = Grid::GetInstance(true,obj.x,obj.y);
 		break;
 	case CANDLE:
 	{
