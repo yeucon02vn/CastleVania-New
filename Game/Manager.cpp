@@ -296,6 +296,8 @@ void Manager::Update(DWORD dt)
 
 	for (int i = 0; i < listGridObjects.size(); i++)
 	{
+		if (simon->isUseStopItem == true)
+			break;
 		LPGAMEOBJECT object = listGridObjects[i];
 		listCoObjects.clear();
 		GetColliableObjects(object, listCoObjects);
@@ -746,12 +748,16 @@ void Manager::Control()
 
 		if (IsKeyPress(DIK_Z))
 		{
-			if (simon->GetSubWeapon() == -1)
+			if (simon->GetSubWeapon() == -1 || simon->GetHeart() <= 0)
 			{
 				return;
 			}
-			if (simon->GetHeart() <= 0)
-				return;
+			if (simon->GetSubWeapon() == ITEM_STOP_WATCH)
+			{
+				if (simon->GetHeart() < 5 || simon->isUseStopItem == true)
+					return;
+				weapon->isDestroy = true;
+			}
 			if (weapon->isDestroy == false)
 				return;
 
@@ -768,12 +774,21 @@ void Manager::Control()
 			weapon->isDestroy = false;
 			weapon->setNx(simon->nx);
 			weapon->SetState(simon->SubWeapon);
-			simon->isHitSubWeapon = true;
-			simon->LoseHeart(1);
-			if (simon->GetState() == SIMON_SIT)
-				simon->SetState(SIMON_SIT_ATTACK);
-			else
-				simon->SetState(SIMON_STAND_ATTACK);
+			if (simon->GetSubWeapon() == ITEM_STOP_WATCH)
+			{
+				simon->LoseHeart(5);
+				simon->isUseStopItem = true;
+			}
+			else {
+			
+
+				simon->isHitSubWeapon = true;
+				simon->LoseHeart(1);
+				if (simon->GetState() == SIMON_SIT)
+					simon->SetState(SIMON_SIT_ATTACK);
+				else
+					simon->SetState(SIMON_STAND_ATTACK);
+			}
 		}
 	}
 	else if (IsKeyPress(DIK_Z))

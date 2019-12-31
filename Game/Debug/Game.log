@@ -16,14 +16,14 @@ d:\castlevania-new\game\manager.cpp(128): warning C4244: 'argument': conversion 
 d:\castlevania-new\game\manager.cpp(138): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 d:\castlevania-new\game\manager.cpp(146): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 d:\castlevania-new\game\manager.cpp(297): warning C4018: '<': signed/unsigned mismatch
-d:\castlevania-new\game\manager.cpp(334): warning C4018: '<': signed/unsigned mismatch
-d:\castlevania-new\game\manager.cpp(341): warning C4018: '<': signed/unsigned mismatch
-d:\castlevania-new\game\manager.cpp(396): warning C4018: '<': signed/unsigned mismatch
-d:\castlevania-new\game\manager.cpp(400): warning C4018: '<': signed/unsigned mismatch
-d:\castlevania-new\game\manager.cpp(404): warning C4018: '<': signed/unsigned mismatch
-d:\castlevania-new\game\manager.cpp(411): warning C4018: '<': signed/unsigned mismatch
-d:\castlevania-new\game\manager.cpp(420): warning C4018: '<': signed/unsigned mismatch
-d:\castlevania-new\game\manager.cpp(425): warning C4018: '<': signed/unsigned mismatch
-d:\castlevania-new\game\manager.cpp(706): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-d:\castlevania-new\game\manager.cpp(1060): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\castlevania-new\game\manager.cpp(336): warning C4018: '<': signed/unsigned mismatch
+d:\castlevania-new\game\manager.cpp(343): warning C4018: '<': signed/unsigned mismatch
+d:\castlevania-new\game\manager.cpp(398): warning C4018: '<': signed/unsigned mismatch
+d:\castlevania-new\game\manager.cpp(402): warning C4018: '<': signed/unsigned mismatch
+d:\castlevania-new\game\manager.cpp(406): warning C4018: '<': signed/unsigned mismatch
+d:\castlevania-new\game\manager.cpp(413): warning C4018: '<': signed/unsigned mismatch
+d:\castlevania-new\game\manager.cpp(422): warning C4018: '<': signed/unsigned mismatch
+d:\castlevania-new\game\manager.cpp(427): warning C4018: '<': signed/unsigned mismatch
+d:\castlevania-new\game\manager.cpp(708): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+d:\castlevania-new\game\manager.cpp(1075): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Game.vcxproj -> D:\CastleVania-New\Debug\Game.exe
