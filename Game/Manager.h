@@ -63,7 +63,6 @@ public:
 	Simon * GetSimon() { return this->simon; }
 	vector<SubWeapon*> * GetWeapon() { return &listWeapon; }
 	void Update(DWORD dt);
-	void UpdateGrid();
 	void Render();
 	void DeleteObject(LPGAMEOBJECT object, int i);
 	void SetGameState(int gameState);
@@ -80,4 +79,5 @@ public:
 	bool CheckSimonCollisionStair();
 	void UpdateCam();
 	void ResetGame();
+	void CrossEffect();
 };

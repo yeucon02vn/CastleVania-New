@@ -1,10 +1,29 @@
-﻿  Grid.cpp
+﻿  Manager.cpp
   d:\castlevania-new\game\library\inc\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
 d:\castlevania-new\game\define.h(6): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
   d:\castlevania-new\game\library\inc\dinput.h(42): note: see previous definition of 'DIRECTINPUT_VERSION'
-d:\castlevania-new\game\grid.cpp(49): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-d:\castlevania-new\game\grid.cpp(68): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-d:\castlevania-new\game\grid.cpp(69): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-d:\castlevania-new\game\grid.cpp(85): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-d:\castlevania-new\game\grid.cpp(110): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+d:\castlevania-new\game\manager.cpp(47): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\castlevania-new\game\manager.cpp(55): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\castlevania-new\game\manager.cpp(64): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\castlevania-new\game\manager.cpp(73): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\castlevania-new\game\manager.cpp(81): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\castlevania-new\game\manager.cpp(89): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\castlevania-new\game\manager.cpp(97): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\castlevania-new\game\manager.cpp(105): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\castlevania-new\game\manager.cpp(113): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\castlevania-new\game\manager.cpp(121): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\castlevania-new\game\manager.cpp(128): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\castlevania-new\game\manager.cpp(138): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\castlevania-new\game\manager.cpp(146): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\castlevania-new\game\manager.cpp(297): warning C4018: '<': signed/unsigned mismatch
+d:\castlevania-new\game\manager.cpp(334): warning C4018: '<': signed/unsigned mismatch
+d:\castlevania-new\game\manager.cpp(341): warning C4018: '<': signed/unsigned mismatch
+d:\castlevania-new\game\manager.cpp(396): warning C4018: '<': signed/unsigned mismatch
+d:\castlevania-new\game\manager.cpp(400): warning C4018: '<': signed/unsigned mismatch
+d:\castlevania-new\game\manager.cpp(404): warning C4018: '<': signed/unsigned mismatch
+d:\castlevania-new\game\manager.cpp(411): warning C4018: '<': signed/unsigned mismatch
+d:\castlevania-new\game\manager.cpp(420): warning C4018: '<': signed/unsigned mismatch
+d:\castlevania-new\game\manager.cpp(425): warning C4018: '<': signed/unsigned mismatch
+d:\castlevania-new\game\manager.cpp(706): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+d:\castlevania-new\game\manager.cpp(1060): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Game.vcxproj -> D:\CastleVania-New\Debug\Game.exe

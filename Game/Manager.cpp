@@ -285,6 +285,7 @@ void Manager::Update(DWORD dt)
 	vector<LPGAMEOBJECT> listCoObjects;
 
 	GetObjectFromGrid();
+	CrossEffect();
 	SetEnemiesSpawnPositon();
 
 	GetColliableObjects(simon, listCoObjects);
@@ -572,6 +573,7 @@ bool Manager::IsInViewport(LPGAMEOBJECT object)
 
 void Manager::SetInactivationByPosition()
 {
+
 	for (auto object : listGridObjects)
 	{
 		if (IsInViewport(object) == false)
@@ -611,6 +613,8 @@ void Manager::SetInactivationByPosition()
 
 void Manager::SetEnemiesSpawnPositon()
 {
+	if (simon->isCoCross == true)
+		return;
 	for (auto obj : listGridObjects)
 	{
 		if (dynamic_cast<Zombie*>(obj))
@@ -953,6 +957,22 @@ void Manager::Control()
 		item->SetPosition(simon->x + 100, simon->y - 100);
 		listItems.push_back(item);
 	}
+	else if (IsKeyPress(DIK_8))
+	{
+		Items *item = new Items();
+		item->SetState(ITEM_CROSS);
+		item->isEffect = false;
+		item->SetPosition(simon->x + 100, simon->y - 100);
+		listItems.push_back(item);
+	}
+	else if (IsKeyPress(DIK_9))
+	{
+		Items *item = new Items();
+		item->SetState(ITEM_PORKCHOP);
+		item->isEffect = false;
+		item->SetPosition(simon->x + 100, simon->y - 100);
+		listItems.push_back(item);
+	}
 #pragma endregion
 
 
@@ -1207,6 +1227,41 @@ void Manager::ResetGame()
 
 		default:
 			break;
+		}
+	}
+}
+
+void Manager::CrossEffect()
+{
+	if (simon->isCoCross == true)
+	{
+		for (UINT i = 0; i < listGridObjects.size(); i++)
+		{
+			// Cross chỉ tác dụng với các object nằm trong viewport
+			if (IsInViewport(listGridObjects[i]) == false)
+				continue;
+			if (listGridObjects[i]->isDestroy == true)
+				continue;
+			if (dynamic_cast<Zombie*>(listGridObjects[i]) && listGridObjects[i]->GetState() == ACTIVE)
+			{
+				auto zombie = dynamic_cast<Zombie*>(listGridObjects[i]);
+				zombie->isDestroy = true;
+			}
+			else if (dynamic_cast<Panther*>(listGridObjects[i]) && listGridObjects[i]->GetState() == ACTIVE)
+			{
+				auto panther = dynamic_cast<Panther*>(listGridObjects[i]);
+				panther->isDestroy = true;
+			}
+			else if (dynamic_cast<Bat*>(listGridObjects[i]) && listGridObjects[i]->GetState() == ACTIVE)
+			{
+				auto bat = dynamic_cast<Bat*>(listGridObjects[i]);
+				bat->isDestroy = true;
+			}
+			else if (dynamic_cast<FishMan*>(listGridObjects[i]) && listGridObjects[i]->GetState() == ACTIVE)
+			{
+				auto fishman = dynamic_cast<FishMan*>(listGridObjects[i]);
+				fishman->isDestroy = true;
+			}
 		}
 	}
 }
