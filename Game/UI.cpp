@@ -26,18 +26,17 @@ UI::~UI()
 }
 
 
-void UI::Update(int bossHP,DWORD dt, int stage)
+void UI::Update(int bossHP,DWORD dt, int stage, int score)
 {
 
 	this->bossHP = bossHP;
-
-
+	this->score = simon->scoreReceived;
 
 	time += dt;
 	int remainTime = PLAY_TIME - (time / CLOCKS_PER_SEC);
 
 
-	string scoreString = to_string(score);
+	string scoreString = to_string(this->score);
 	while (scoreString.length() < 6) scoreString = "0" + scoreString;
 
 	string timeString = to_string(remainTime);

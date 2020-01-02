@@ -51,8 +51,8 @@ void Manager::LoadObjects(int id)
 		Candle * candle = new Candle();
 		candle->SetPosition(obj.x, obj.y);
 		candle->SetState(obj.state);
-		candle->isDropItem = true;
-		grid->Add(candle, obj.x / 256, obj.y /240);
+		candle->isDropItem = obj.isDropItem;
+		grid->Add(candle, obj.grid_x, obj.grid_y);
 		break;
 	}
 	case GROUND:
@@ -61,7 +61,7 @@ void Manager::LoadObjects(int id)
 		ground->SetPosition(obj.x, obj.y);
 		ground->SetState(obj.state);
 
-		grid->Add(ground, obj.x / 256, obj.y / 240);
+		grid->Add(ground, obj.grid_x, obj.grid_y);
 		break;
 	}
 
@@ -70,7 +70,7 @@ void Manager::LoadObjects(int id)
 		Stair * stair = new Stair();
 		stair->SetPosition(obj.x, obj.y);
 		stair->SetState(obj.state);
-		grid->Add(stair, obj.x / 256, obj.y / 240);
+		grid->Add(stair, obj.grid_x, obj.grid_y);
 		break;
 	}
 	case DOOR:
@@ -78,7 +78,7 @@ void Manager::LoadObjects(int id)
 		Door * door = new Door();
 		door->SetPosition(obj.x, obj.y);
 		door->SetState(obj.state);
-		grid->Add(door, obj.x / 256, obj.y / 240);
+		grid->Add(door, obj.grid_x, obj.grid_y);
 		break;
 	}
 	case ZOMBIE:
@@ -86,7 +86,7 @@ void Manager::LoadObjects(int id)
 		Zombie * zombie = new Zombie();
 		zombie->SetEntryPosition(obj.x, obj.y);
 		zombie->SetState(ZOMBIE_IDLE);
-		grid->Add(zombie, obj.x / 256, obj.y / 240);
+		grid->Add(zombie, obj.grid_x, obj.grid_y);
 		break;
 	}
 	case PANTHER:
@@ -94,7 +94,7 @@ void Manager::LoadObjects(int id)
 		Panther * panther = new Panther();
 		panther->SetEntryPosition(obj.x, obj.y);
 		panther->SetState(PANTHER_IDLE_INACTIVE);
-		grid->Add(panther, obj.x / 256, obj.y / 240);
+		grid->Add(panther, obj.grid_x, obj.grid_y);
 		break;
 	}
 	case BAT:
@@ -102,7 +102,7 @@ void Manager::LoadObjects(int id)
 		Bat * bat = new Bat();
 		bat->SetEntryPosition(obj.x, obj.y);
 		bat->SetState(BAT_IDLE);
-		grid->Add(bat, obj.x / 256, obj.y / 240);
+		grid->Add(bat, obj.grid_x, obj.grid_y);
 		break;
 	}
 	case FISHMAN:
@@ -110,7 +110,7 @@ void Manager::LoadObjects(int id)
 		FishMan * fishman = new FishMan();
 		fishman->SetEntryPosition(obj.x, obj.y);
 		fishman->SetState(FISHMAN_IDLE);
-		grid->Add(fishman, obj.x / 256, obj.y / 240);
+		grid->Add(fishman, obj.grid_x, obj.grid_y);
 		break;
 	}
 	case CHANGE_SCENE_OBJECT:
@@ -118,14 +118,14 @@ void Manager::LoadObjects(int id)
 		ChangeScene * changeScene = new ChangeScene();
 		changeScene->SetPosition(obj.x, obj.y);
 		changeScene->SetIdScene(obj.state);
-		grid->Add(changeScene, obj.x / 256, obj.y / 240);
+		grid->Add(changeScene, obj.grid_x, obj.grid_y);
 		break;
 	}
 	case WATER:
 	{
 		water = new Water();
 		water->SetPosition(obj.x, obj.y);
-		grid->Add(water, obj.x / 256, obj.y / 240);
+		grid->Add(water, obj.grid_x, obj.grid_y);
 		break;
 	}
 	case BREAKWALL:
@@ -133,9 +133,8 @@ void Manager::LoadObjects(int id)
 		BreakWall * breakwall = new BreakWall();
 		breakwall->SetPosition(obj.x, obj.y);
 		breakwall->SetState(HIDDEN);
-		if(!(obj.x == 3584 && obj.y == 384))
-			breakwall->isDropItem = true;
-		grid->Add(breakwall, obj.x / 256, obj.y /240);
+		breakwall->isDropItem = obj.isDropItem;
+		grid->Add(breakwall, obj.grid_x, obj.grid_y);
 		break;
 	}
 
@@ -143,7 +142,7 @@ void Manager::LoadObjects(int id)
 	{
 		boss = new Boss();
 		boss->setPoisitionBoss(obj.x, obj.y);
-		grid->Add(boss, obj.x / 256, obj.y / 240);
+		grid->Add(boss, obj.grid_x, obj.grid_y);
 		break;
 	}
 
@@ -367,7 +366,7 @@ void Manager::Update(DWORD dt)
 	SetInactivationByPosition();
 	UpdateCam();
 	grid->Move(game->getCamPosition());
-	ui->Update(boss->GetHP(), dt, idScene);
+	ui->Update(boss->GetHP(), dt, idScene, weapon->scoreReceived);
 	ResetGame();
 }
 

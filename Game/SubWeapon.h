@@ -10,12 +10,12 @@
 #include "Simon.h"
 class SubWeapon : public GameObject
 {
-	int scoreReceived;
+	
 	bool isColisionGround = false;
 	int holyWaterShatteredCounter = 0;
 public:
 	SubWeapon();
-
+	int scoreReceived;
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObject = NULL);
 	virtual void SetPosition(float x, float y);
 	virtual void Render();

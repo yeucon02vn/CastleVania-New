@@ -13,11 +13,11 @@
 #include "Boss.h"
 class Whip : public GameObject
 {
-	int scoreReceived;;
+	
 	bool isMaxLevel = false;
 public:
 	Whip();
-
+	int scoreReceived;;
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects = NULL);
 	void Render();
 	void reset();

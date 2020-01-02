@@ -11,7 +11,11 @@ public:
 	float x;
 	float y;
 	int state;
-	void Add(int id, float pos_x, float pos_y, int state) { idObject = id; x = pos_x; y = pos_y; this->state = state; }
+	bool isDropItem;
+	int grid_x;
+	int grid_y;
+	void Add(int id, float pos_x, float pos_y, int state, bool dropItem, int grid_x, int grid_y) { idObject = id; x = pos_x; y = pos_y;
+			this->state = state; isDropItem = dropItem; this->grid_x = grid_x; this->grid_y = grid_y; }
 	~Object() {}
 	Object() {}
 };

@@ -321,5 +321,6 @@
 #define NO_HP	1
 #define BOSS_HP 2
 
-
+#define CELL_WIDTH (int)256;
+#define CELL_HEIGHT (int)240;
 

@@ -15,10 +15,12 @@ void ObjectsManager::LoadObjectFromFile(LPCWSTR path)
 	int ID_Obj;
 	float pos_x, pos_y;
 	int state;
+	bool isDropItem;
+
 	while (!fs.eof())
 	{
-		fs >> ID_Obj >> pos_x >> pos_y >> state;
-		obj.Add(ID_Obj, pos_x, pos_y, state);
+		fs >> ID_Obj >> pos_x >> pos_y >> state >> isDropItem;
+		obj.Add(ID_Obj, pos_x, pos_y, state, isDropItem, int(pos_x/256), int(pos_y/240));
 		mapObject.push_back(obj);
 	}
 
